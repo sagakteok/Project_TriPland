@@ -33,7 +33,7 @@
 <style scoped>
 
 .text{
-  position: fixed;
+  position: static;
   left: 18%;
   top: 13%;
   font-size: 40px;
@@ -42,7 +42,7 @@
 }
 
 .center {
-  position: fixed;
+  position: static;
   left: 25%;
   top: 25%;
 }
