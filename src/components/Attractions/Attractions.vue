@@ -1,33 +1,29 @@
 <template>
-  <v-app>
-
   <div class="text">오늘의 여행지</div>
-    <div class="center">
-      <v-carousel show-arrows="hover" hide-delimiters style="height: 70vh; width: 50vw;">
-        <v-carousel-item src="@/assets/homeimage/castle.jpg" cover>
-          <div class="attraction">
-            오사카성
-          </div>
-          <img class="carousel-image" src="@/assets/homeimage/castle.jpg" alt="Castle">
-        </v-carousel-item>
+  <div class="center">
+    <v-carousel show-arrows="hover" hide-delimiters style="height: 70vh; width: 50vw;">
+      <v-carousel-item src="@/assets/homeimage/castle.jpg" cover>
+        <div class="attraction">
+          오사카성
+        </div>
+        <img class="carousel-image" src="@/assets/homeimage/castle.jpg" alt="Castle">
+      </v-carousel-item>
 
-        <v-carousel-item src="@/assets/homeimage/mountain.jpg" cover>
-          <div class="attraction">
-            설악산
-          </div>
-          <img class="carousel-image" src="@/assets/homeimage/mountain.jpg" alt="Mountain">
-        </v-carousel-item>
+      <v-carousel-item src="@/assets/homeimage/mountain.jpg" cover>
+        <div class="attraction">
+          설악산
+        </div>
+        <img class="carousel-image" src="@/assets/homeimage/mountain.jpg" alt="Mountain">
+      </v-carousel-item>
 
-        <v-carousel-item src="@/assets/homeimage/sea.jpg" cover>
-          <div class="attraction">
-            강릉 바다
-          </div>
-          <img class="carousel-image" src="@/assets/homeimage/sea.jpg" alt="Sea">
-        </v-carousel-item>
-      </v-carousel>
-    </div>
-
-  </v-app>
+      <v-carousel-item src="@/assets/homeimage/sea.jpg" cover>
+        <div class="attraction">
+          강릉 바다
+        </div>
+        <img class="carousel-image" src="@/assets/homeimage/sea.jpg" alt="Sea">
+      </v-carousel-item>
+    </v-carousel>
+  </div>
 </template>
 
 <style scoped>
@@ -66,3 +62,5 @@
   font-weight: bold;
 }
 </style>
+<script setup>
+</script>

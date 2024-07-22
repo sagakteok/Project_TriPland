@@ -3,27 +3,27 @@
     <div class="icon-container">
       <div class="icon-item">
         <v-btn
-          class="ma-2"
+            class="ma-2"
 
-          icon="mdi-map-marker"
+            icon="mdi-map-marker"
         ></v-btn>
         <div class="icon-text"><b> 여행지 추천 </b></div>
       </div>
 
       <div class="icon-item">
         <v-btn
-          class="ma-2"
+            class="ma-2"
 
-          icon="mdi-car"
+            icon="mdi-car"
         ></v-btn>
         <div class="icon-text"><b> 렌트카 </b></div>
       </div>
 
       <div class="icon-item">
         <v-btn
-          class="ma-2"
+            class="ma-2"
 
-          icon="mdi-home-modern"
+            icon="mdi-home-modern"
         ></v-btn>
         <div class="icon-text"><b> 숙소 예약 </b></div>
       </div>
