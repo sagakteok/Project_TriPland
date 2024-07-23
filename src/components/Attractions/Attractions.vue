@@ -1,7 +1,7 @@
 <template>
   <div class="text">오늘의 여행지</div>
   <div class="center">
-    <v-carousel show-arrows="hover" hide-delimiters style="height: 70vh; width: 50vw;">
+    <v-carousel show-arrows="hover" hide-delimiters cycle interval="3000" style="height: 70vh; width: 50vw;">
       <v-carousel-item src="@/assets/homeimage/castle.jpg" cover>
         <div class="attraction">
           오사카성
