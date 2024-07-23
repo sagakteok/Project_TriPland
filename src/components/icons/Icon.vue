@@ -48,12 +48,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 30%;
+  margin: 0 10%;
 }
 
 .icon-text {
-  margin-top: 8px;
-  font-size: 70%;
+  margin-top: 10%;
+  font-size: 100%;
   color: #6A0DAD;
   text-align: center;
 }
