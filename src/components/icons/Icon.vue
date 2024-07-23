@@ -2,29 +2,38 @@
   <div class="text-center">
     <div class="icon-container">
       <div class="icon-item">
-        <v-btn
-            class="ma-2"
-
-            icon="mdi-map-marker"
-        ></v-btn>
+        <v-hover v-slot="{ isHovering, props }">
+          <v-btn
+              class="ma-2"
+              :style="IconButtonStyle(isHovering)"
+              icon="mdi-map-marker"
+              v-bind="props"
+          ></v-btn>
+        </v-hover>
         <div class="icon-text"><b> 여행지 추천 </b></div>
       </div>
 
       <div class="icon-item">
-        <v-btn
-            class="ma-2"
-
-            icon="mdi-car"
-        ></v-btn>
+        <v-hover v-slot="{ isHovering, props }">
+          <v-btn
+              class="ma-2"
+              :style="IconButtonStyle(isHovering)"
+              icon="mdi-car"
+              v-bind="props"
+          ></v-btn>
+        </v-hover>
         <div class="icon-text"><b> 렌트카 </b></div>
       </div>
 
       <div class="icon-item">
-        <v-btn
-            class="ma-2"
-
-            icon="mdi-home-modern"
-        ></v-btn>
+        <v-hover v-slot="{ isHovering, props }">
+          <v-btn
+              class="ma-2"
+              :style="IconButtonStyle(isHovering)"
+              icon="mdi-home-modern"
+              v-bind="props"
+          ></v-btn>
+        </v-hover>
         <div class="icon-text"><b> 숙소 예약 </b></div>
       </div>
     </div>
@@ -34,6 +43,15 @@
 <script>
 export default {
   name: 'Icon',
+  methods: {
+    IconButtonStyle(isHovering){
+      return{
+        transition: isHovering ? 'all .1s linear 0s' : 'all 0s ease-in-out',
+        color: isHovering ? '#A533FF' : '#000000',
+        outline: 'none',
+      }
+    }
+  }
 }
 </script>
 
