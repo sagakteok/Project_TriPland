@@ -11,7 +11,7 @@ export default {
       return{
         marginTop: '20px',
         color: '#7000FF',
-        shadow: '0px 0px 2px #000000'
+        shadow: '0px 0px 2px #000000',
       }
     }
   }
