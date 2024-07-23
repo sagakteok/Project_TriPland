@@ -31,8 +31,8 @@
 .text{
   position: relative;
   right: 50%;
-  top: 10%;
-  font-size: 40px;
+  top: 6%;
+  font-size: 35px;
   font-weight: bold;
   color: purple;
 }
@@ -41,7 +41,7 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  top: 8%;
+  bottom: 2%;
 }
 
 .carousel-image {
