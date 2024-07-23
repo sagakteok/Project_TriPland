@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-text-field prepend-inner-icon="mdi-magnify" label="여행지나 서비스를 검색해보세요" variant="outlined" rounded :style="SearchStyle()"/>
+    <v-text-field prepend-inner-icon="mdi-magnify" label="여행지나 서비스를 검색해보세요" variant="outlined" clearable rounded :style="SearchStyle()"/>
   </div>
 </template>
 
