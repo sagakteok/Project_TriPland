@@ -1,7 +1,0 @@
-cache
-
-# Dependency directories
-node_modules/
-
-#VsCode
-.vscode/
