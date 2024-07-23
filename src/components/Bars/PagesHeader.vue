@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar :style="AppbarStyle()" :elevation="0">
+  <v-app-bar scroll-behavior="fade-image inverted" :image="MainHeaderBackground" scroll-threshold="100" elevation="0" :style="AppbarStyle()">
     <v-app-bar-nav-icon :style="AppbarNavIconStyle()" :ripple="false"/>
     <text :style="TriPlandLogoStyle()">
       <v-img :src="TriPlandLogo"/>
@@ -12,7 +12,8 @@
 export default {
   data(){
     return {
-      TriPlandLogo: new URL('../../assets/PagesTriPland.png', import.meta.url).href
+      TriPlandLogo: new URL('../../assets/PagesTriPland.png', import.meta.url).href,
+      MainHeaderBackground: new URL('../../assets/MainHeaderBackground.png', import.meta.url).href
     }
   },
   methods: {

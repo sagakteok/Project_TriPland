@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 
 .text{
   position: relative;
