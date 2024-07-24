@@ -1,7 +1,6 @@
 <template>
   <v-bottom-navigation :style="BottombarStyle()" :elevation="0">
-    <v-btn :style="BottombarButtonStyle()" rounded="lg">
-      <v-icon>mdi-calendar-edit</v-icon>
+    <v-btn stacked prepend-icon="mdi-calendar-edit" :style="BottombarButtonStyle()" rounded="lg">
       <text :style="BottombarText()">여행계획</text>
     </v-btn>
     <v-hover v-slot="{isHovering, props}">
@@ -9,8 +8,7 @@
         <v-img :src="SmallTriPlandLogo"/>
       </text>
     </v-hover>
-    <v-btn :style="BottombarButtonStyle()" rounded="lg">
-      <v-icon>mdi-heart-outline</v-icon>
+    <v-btn stacked prepend-icon="mdi-heart-outline" :style="BottombarButtonStyle()" rounded="lg">
       <text :style="BottombarText()">위시리스트</text>
     </v-btn>
   </v-bottom-navigation>
@@ -20,16 +18,16 @@
 export default {
   data(){
     return {
-       SmallTriPlandLogo: new URL('../../../public/SmallTriPlandLogo.png', import.meta.url).href
+       SmallTriPlandLogo: new URL('../../assets/SmallTriPlandLogo.png', import.meta.url).href
     }
   },
   methods: {
     BottombarStyle(){
       return{
-        background: "#F3EDF799",
-        color: "#D094FF",
-        borderTop: '1px solid #D094FF',
-        backdropFilter: 'blur(50px)',
+        background: "#ECD3FF90",
+        color: "#A533FF",
+        borderTop: '1px solid #A533FF',
+        backdropFilter: 'blur(20px)',
       };
     },
     BottombarButtonStyle(){
