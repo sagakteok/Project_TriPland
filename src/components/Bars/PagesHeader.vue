@@ -1,6 +1,5 @@
 <template>
   <v-app-bar scroll-behavior="fade-image inverted" :image="MainHeaderBackground" scroll-threshold="100" elevation="0" :style="AppbarStyle()">
-    <v-app-bar-nav-icon :style="AppbarNavIconStyle()" :ripple="false"/>
     <text :style="TriPlandLogoStyle()">
       <v-img :src="TriPlandLogo"/>
     </text>
@@ -17,13 +16,6 @@ export default {
     }
   },
   methods: {
-    AppbarNavIconStyle(){
-      return{
-        fontSize: 'clamp(12px, 2vw, 20px)',
-        marginLeft: 'clamp(3px, 0.5vw, 5px)',
-        outline: 'none',
-      };
-    },
     TriPlandLogoStyle(){
       return{
         width: 'clamp(100px,18vw,150px)',

@@ -1,8 +1,5 @@
 <template>
   <v-app-bar :style="AppbarStyle()" :elevation="0">
-    <v-hover v-slot="{ isHovering, props }">
-      <v-icon icon="mdi-menu" :style="AppbarNavIconStyle(isHovering)" v-bind="props"/>
-    </v-hover>
     <text :style="TriPlandLogoStyle()">
       <v-img :src="TriPlandLogo"/>
     </text>
@@ -20,16 +17,6 @@ export default {
     }
   },
   methods: {
-    AppbarNavIconStyle(isHovering){
-      return{
-        transition: isHovering ? 'all .1s linear 0s' : 'all 0s ease-in-out',
-        fontSize: 'clamp(18px, 3vw, 22.5px)',
-        marginLeft: 'clamp(12px, 2vw, 20px)',
-        color: isHovering ? '#A533FF' : '#FFFFFF',
-        outline: 'none',
-        cursor: 'pointer'
-      };
-    },
     TriPlandLogoStyle(){
       return{
         transition: 'all 0s ease-in-out',
