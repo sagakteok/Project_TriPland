@@ -33,7 +33,6 @@ export default {
       return{
         transition: isHovering ? 'all .1s linear 0s' : 'all 0s ease-in-out',
         fontSize: '20px',
-        outline: 'none',
         color: isHovering ? '#A533FF' : '#000000',
         cursor: 'pointer'
       }

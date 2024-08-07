@@ -1,40 +1,41 @@
 <template>
-  <div class="text-center">
-    <div class="icon-container">
-      <div class="icon-item">
-        <v-hover v-slot="{ isHovering, props }">
-          <v-btn
-              class="ma-2"
-              :style="IconButtonStyle(isHovering)"
-              icon="mdi-map-marker"
-              v-bind="props"
-          ></v-btn>
-        </v-hover>
-        <div class="icon-text"><b> 여행지 추천 </b></div>
-      </div>
+  <div style="max-width: 1600px; margin: auto; margin-top: 50px">
+    <div class="text-center">
+      <div class="icon-container">
+        <div class="icon-item">
+          <v-hover v-slot="{ isHovering, props }">
+            <v-btn
+                class="ma-2"
+                :style="IconButtonStyle(isHovering)"
+                icon="mdi-map-marker"
+                v-bind="props"
+            ></v-btn>
+          </v-hover>
+          <div class="icon-text"><b> 여행지 추천 </b></div>
+        </div>
 
-      <div class="icon-item">
-        <v-hover v-slot="{ isHovering, props }">
-          <v-btn
-              class="ma-2"
-              :style="IconButtonStyle(isHovering)"
-              icon="mdi-car"
-              v-bind="props"
-          ></v-btn>
-        </v-hover>
-        <div class="icon-text"><b> 렌트카 </b></div>
-      </div>
-
-      <div class="icon-item">
-        <v-hover v-slot="{ isHovering, props }">
-          <v-btn
-              class="ma-2"
-              :style="IconButtonStyle(isHovering)"
-              icon="mdi-home-modern"
-              v-bind="props"
-          ></v-btn>
-        </v-hover>
-        <div class="icon-text"><b> 숙소 예약 </b></div>
+        <div class="icon-item">
+          <v-hover v-slot="{ isHovering, props }">
+            <v-btn
+                class="ma-2"
+                :style="IconButtonStyle(isHovering)"
+                icon="mdi-car"
+                v-bind="props"
+            ></v-btn>
+          </v-hover>
+          <div class="icon-text"><b> 렌트카 </b></div>
+        </div>
+        <div class="icon-item">
+          <v-hover v-slot="{ isHovering, props }">
+            <v-btn
+                class="ma-2"
+                :style="IconButtonStyle(isHovering)"
+                icon="mdi-home-modern"
+                v-bind="props"
+            ></v-btn>
+          </v-hover>
+          <div class="icon-text"><b> 숙소 예약 </b></div>
+        </div>
       </div>
     </div>
   </div>
@@ -48,7 +49,6 @@ export default {
       return{
         transition: isHovering ? 'all .1s linear 0s' : 'all 0s ease-in-out',
         color: isHovering ? '#A533FF' : '#000000',
-        outline: 'none',
       }
     }
   }

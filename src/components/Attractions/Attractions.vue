@@ -1,28 +1,32 @@
 <template>
-  <div class="text">오늘의 여행지</div>
-  <div class="center">
-    <v-carousel show-arrows="hover" hide-delimiters cycle interval="3000" style="height: 70vh; width: 50vw;">
-      <v-carousel-item src="@/assets/homeimage/castle.jpg" cover>
-        <div class="attraction">
-          오사카성
-        </div>
-        <img class="carousel-image" src="@/assets/homeimage/castle.jpg" alt="Castle">
-      </v-carousel-item>
+  <div style="max-width: 1600px; margin: auto">
+    <v-row>
+      <div class="text">오늘의 여행지</div>
+    </v-row>
+    <v-row>
+      <v-carousel show-arrows="hover" hide-delimiters cycle interval="3000" style="height: 60vh; width: 40vw; margin: auto">
+        <v-carousel-item src="@/assets/homeimage/castle.jpg" cover>
+          <div class="attraction">
+            오사카성
+          </div>
+          <img class="carousel-image" src="@/assets/homeimage/castle.jpg" alt="Castle">
+        </v-carousel-item>
 
-      <v-carousel-item src="@/assets/homeimage/mountain.jpg" cover>
-        <div class="attraction">
-          설악산
-        </div>
-        <img class="carousel-image" src="@/assets/homeimage/mountain.jpg" alt="Mountain">
-      </v-carousel-item>
+        <v-carousel-item src="@/assets/homeimage/mountain.jpg" cover>
+          <div class="attraction">
+            설악산
+          </div>
+          <img class="carousel-image" src="@/assets/homeimage/mountain.jpg" alt="Mountain">
+        </v-carousel-item>
 
-      <v-carousel-item src="@/assets/homeimage/sea.jpg" cover>
-        <div class="attraction">
-          강릉 바다
-        </div>
-        <img class="carousel-image" src="@/assets/homeimage/sea.jpg" alt="Sea">
-      </v-carousel-item>
-    </v-carousel>
+        <v-carousel-item src="@/assets/homeimage/sea.jpg" cover>
+          <div class="attraction">
+            강릉 바다
+          </div>
+          <img class="carousel-image" src="@/assets/homeimage/sea.jpg" alt="Sea">
+        </v-carousel-item>
+      </v-carousel>
+    </v-row>
   </div>
 </template>
 
@@ -30,8 +34,8 @@
 
 .text{
   position: relative;
-  right: 50%;
-  top: 6%;
+  left: 5%;
+  top: 50px;
   font-size: 35px;
   font-weight: bold;
   color: purple;

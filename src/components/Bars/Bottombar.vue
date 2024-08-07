@@ -1,6 +1,6 @@
 <template>
   <v-bottom-navigation :style="BottombarStyle()" :elevation="0">
-    <v-btn stacked prepend-icon="mdi-calendar-edit" :style="BottombarButtonStyle()" rounded="lg">
+    <v-btn stacked prepend-icon="mdi-calendar-edit" rounded="lg">
       <text :style="BottombarText()">여행계획</text>
     </v-btn>
     <v-hover v-slot="{isHovering, props}">
@@ -8,7 +8,7 @@
         <v-img :src="SmallTriPlandLogo"/>
       </text>
     </v-hover>
-    <v-btn stacked prepend-icon="mdi-heart-outline" :style="BottombarButtonStyle()" rounded="lg">
+    <v-btn stacked prepend-icon="mdi-heart-outline" rounded="lg">
       <text :style="BottombarText()">위시리스트</text>
     </v-btn>
   </v-bottom-navigation>
@@ -28,11 +28,6 @@ export default {
         color: "#A533FF",
         borderTop: '1px solid #A533FF',
         backdropFilter: 'blur(20px)',
-      };
-    },
-    BottombarButtonStyle(){
-      return{
-        outline: 'none',
       };
     },
     SmallTriPlandLogoStyle(isHovering){

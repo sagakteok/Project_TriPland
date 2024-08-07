@@ -1,7 +1,7 @@
 <template>
   <MainHomeHeader/>
-  <Icon/>
   <Attractions/>
+  <Icon/>
   <Bottombar/>
 </template>
 

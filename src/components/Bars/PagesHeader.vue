@@ -8,7 +8,7 @@
         <v-btn icon="mdi-account-outline" v-bind="props" :style="AppbarButtonLogoStyle(isHovering)" :ripple="false"/>
       </v-hover>
       <v-hover v-slot="{ isHovering, props }">
-        <v-app-bar-nav-icon v-bind="props" :style="AppbarButtonLogoStyle(isHovering)" :ripple="false"/>
+        <v-btn icon="mdi-dots-vertical" v-bind="props" :style="AppbarButtonLogoStyle(isHovering)" :ripple="false"/>
       </v-hover>
     </v-app-bar>
   </div>
@@ -36,7 +36,6 @@ export default {
       return{
         transition: isHovering ? 'all .1s linear 0s' : 'all 0s ease-in-out',
         fontSize: '20px',
-        outline: 'none',
         color: isHovering ? '#A533FF' : '#000000',
         cursor: 'pointer'
       }
