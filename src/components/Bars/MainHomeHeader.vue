@@ -1,47 +1,43 @@
 <template>
-  <v-app-bar :style="AppbarStyle()" :elevation="0">
-    <text :style="TriPlandLogoStyle()">
-      <v-img :src="TriPlandLogo"/>
-    </text>
-    <v-hover v-slot="{ isHovering, props }">
-      <v-icon icon="mdi-account-circle-outline" :style="AccountLogoStyle(isHovering)" v-bind="props"/>
-    </v-hover>
-  </v-app-bar>
+  <div>
+    <v-app-bar elevation="0" :style="AppbarStyle()">
+      <v-app-bar-title>
+        <v-img :style="TriPlandLogoStyle()" :src="TriPlandLogo"/>
+      </v-app-bar-title>
+      <v-hover v-slot="{ isHovering, props }">
+        <v-btn icon="mdi-account-outline" v-bind="props" :style="AppbarButtonLogoStyle(isHovering)" :ripple="false"/>
+      </v-hover>
+    </v-app-bar>
+  </div>
 </template>
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-      TriPlandLogo: new URL('../../assets/MainHomeTriPland.png', import.meta.url).href
+      TriPlandLogo: new URL('../../assets/PagesTriPland.png', import.meta.url).href,
     }
   },
   methods: {
-    TriPlandLogoStyle(){
-      return{
-        transition: 'all 0s ease-in-out',
-        width: 'clamp(100px,18vw,150px)',
-        margin: 'auto',
-        cursor: 'pointer'
-      }
-    },
-    AccountLogoStyle(isHovering){
-      return{
-        transition: isHovering ? 'all .1s linear 0s' : 'all 0s ease-in-out',
-        fontSize: 'clamp(18px, 3vw, 22.5px)',
-        outline: 'none',
-        color: isHovering ? '#A533FF' : '#FFFFFF',
-        marginRight: 'clamp(12px, 2vw, 20px)',
-        cursor: 'pointer'
+    TriPlandLogoStyle() {
+      return {
+        width: '130px',
       }
     },
     AppbarStyle() {
       return {
-        transition: 'all 0s ease-in-out',
-        background: "#D094FF",
-        color: "#FFFFFF",
+        background: "#FFFFFF",
       };
-    }
+    },
+    AppbarButtonLogoStyle(isHovering){
+      return{
+        transition: isHovering ? 'all .1s linear 0s' : 'all 0s ease-in-out',
+        fontSize: '20px',
+        outline: 'none',
+        color: isHovering ? '#A533FF' : '#000000',
+        cursor: 'pointer'
+      }
+    },
   }
 };
 </script>
