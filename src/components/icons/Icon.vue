@@ -10,6 +10,7 @@
                   :style="IconButtonStyle(isHovering)"
                   icon="mdi-map-marker"
                   v-bind="props"
+                  :to="{ path: '/travel-pick' }"
               ></v-btn>
             </v-hover>
             <div class="icon-text"><b> 여행지 추천 </b></div>
