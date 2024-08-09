@@ -4,41 +4,29 @@
       <div class="icon-container">
         <v-scroll-y-transition>
           <div v-show="Transition1" class="icon-item">
-            <v-hover v-slot="{ isHovering, props }">
-              <v-btn
-                  class="ma-2"
-                  :style="IconButtonStyle(isHovering)"
-                  icon="mdi-map-marker"
-                  v-bind="props"
-                  :to="{ path: '/travel-pick' }"
-              ></v-btn>
-            </v-hover>
+            <v-btn
+                class="ma-2 icon-button"
+                icon="mdi-map-marker"
+                @click="gotoTravelPick()"
+            ></v-btn>
             <div class="icon-text"><b> 여행지 추천 </b></div>
           </div>
         </v-scroll-y-transition>
         <v-scroll-y-transition>
           <div v-show="Transition2" class="icon-item">
-            <v-hover v-slot="{ isHovering, props }">
-              <v-btn
-                  class="ma-2"
-                  :style="IconButtonStyle(isHovering)"
-                  icon="mdi-car"
-                  v-bind="props"
-              ></v-btn>
-            </v-hover>
+            <v-btn
+                class="ma-2 icon-button"
+                icon="mdi-car"
+            ></v-btn>
             <div class="icon-text"><b> 렌트카 </b></div>
           </div>
         </v-scroll-y-transition>
         <v-scroll-y-transition>
           <div v-show="Transition3" class="icon-item">
-            <v-hover v-slot="{ isHovering, props }">
-              <v-btn
-                  class="ma-2"
-                  :style="IconButtonStyle(isHovering)"
-                  icon="mdi-home-modern"
-                  v-bind="props"
-              ></v-btn>
-            </v-hover>
+            <v-btn
+                class="ma-2 icon-button"
+                icon="mdi-home-modern"
+            ></v-btn>
             <div class="icon-text"><b> 숙소 예약 </b></div>
           </div>
         </v-scroll-y-transition>
@@ -48,6 +36,7 @@
 </template>
 
 <script>
+import router from "../../router.js"
 export default {
   name: 'Icon',
   data() {
@@ -58,11 +47,8 @@ export default {
     }
   },
   methods: {
-    IconButtonStyle(isHovering){
-      return{
-        transition: isHovering ? 'all .1s linear 0s' : 'all 0s ease-in-out',
-        color: isHovering ? '#A533FF' : '#000000',
-      }
+    gotoTravelPick() {
+      router.push('/travel-pick')
     }
   },
   mounted() {
@@ -79,7 +65,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .icon-container {
   display: flex;
   justify-content: center;
@@ -98,5 +84,14 @@ export default {
   font-size: 100%;
   color: #6A0DAD;
   text-align: center;
+}
+
+.icon-button {
+  color: #000000;
+}
+
+.icon-button:hover {
+  transition: all 0.1s ease;
+  color: #A533FF;
 }
 </style>

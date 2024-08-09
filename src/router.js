@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import MainHome from "./components/MainHome/MainHome.vue";
-import TravelPick from "./components/TravelPick/TravelPick.vue";
+import TravelPick from "./Pages/TravelPick.vue";
 
 const routes = [
     {
