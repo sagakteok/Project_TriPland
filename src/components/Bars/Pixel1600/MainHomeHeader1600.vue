@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-app-bar elevation="0" class="AppbarStyle">
+    <v-app-bar elevation="0" class="MainHomeHeader1600Style">
       <v-app-bar-title>
         <v-img :style="TriPlandLogoStyle" :src="TriPlandLogo" alt="TriPland 로고"/>
       </v-app-bar-title>
-      <v-btn icon="mdi-account-outline" class="AppbarButtonLogoStyle" :ripple="false"/>
+      <v-btn icon="mdi-account-outline" class="MainHomeHeader1600ButtonLogoStyle" :ripple="false"/>
     </v-app-bar>
   </div>
 </template>
@@ -47,15 +47,15 @@ export default {
 </script>
 
 <style>
-.AppbarStyle {
+.MainHomeHeader1600Style {
   background: #FFFFFF;
 }
-.AppbarButtonLogoStyle {
+.MainHomeHeader1600ButtonLogoStyle {
   font-size: 18px;
   color: #000000;
   cursor: pointer;
 }
-.AppbarButtonLogoStyle:hover {
+.MainHomeHeader1600ButtonLogoStyle:hover {
   transition: all .1s ease;
   color: #A532FF;
 }

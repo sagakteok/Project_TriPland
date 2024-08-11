@@ -1,6 +1,6 @@
 <template>
   <v-scroll-y-transition>
-    <div style="max-width: 1600px; margin: auto; margin-top: 80px">
+    <div style="max-width: 1600px; margin: auto; margin-top: 60px">
       <div class="icon-container">
         <v-scroll-y-transition>
           <div v-show="Transition1" class="icon-item">

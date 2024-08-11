@@ -3,7 +3,7 @@
     <v-btn stacked prepend-icon="mdi-calendar-edit" rounded="lg">
       <text class="BottombarText">여행계획</text>
     </v-btn>
-    <text class="SmallTriPlandLogoStyle" v-bind="props" @click="gotomain()">
+    <text class="SmallTriPlandLogoStyle" @click="gotomain()">
       <v-img :src="SmallTriPlandLogo"/>
     </text>
     <v-btn stacked prepend-icon="mdi-heart-outline" rounded="lg">

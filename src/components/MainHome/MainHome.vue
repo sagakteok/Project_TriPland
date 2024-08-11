@@ -1,9 +1,11 @@
 <template>
   <div v-if="Width500">
-
+    <MainHomeHeader500/>
+    <Bottombar500/>
   </div>
   <div v-else-if="Width800">
-
+    <MainHomeHeader800/>
+    <Bottombar800/>
   </div>
   <div v-else>
     <MainHomeHeader1600/>
