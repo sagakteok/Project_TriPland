@@ -5,13 +5,39 @@
     <div class="travel-container500">
         <div class="TravelText500">여행지 추천</div>
         <div class="content-box">
-            <div class="info500">
+            <div v-if="!selectedContent" class="info500">
                 <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
                 <span>여행을 원하시는 지역을 선택해주세요</span>
             </div>
-            <div class="button-group">
-                <v-btn class="country-btn" color="purple" outlined>국내</v-btn>
-                <v-btn class="country-btn" color="purple" outlined>해외</v-btn>
+            <div class="button-group500" v-if="!selectedContent">
+                <v-btn class="country-btn500" color="purple" outlined @click="selectContent('domestic')">국내</v-btn>
+                <v-btn class="country-btn500" color="purple" outlined @click="selectContent('international')">해외</v-btn>
+            </div>
+            <div v-if="selectedContent === 'domestic'">
+                <div class="info500">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>원하시는 여행 유형을 선택해주세요</span>
+                </div>
+                <div class="button-group500">
+                    <v-btn class="country-btn500" color="purple" outlined @click="selectContent('sea')">바다</v-btn>
+                    <v-btn class="country-btn500" color="purple" outlined @click="selectContent('valley')">계곡</v-btn>
+                    <v-btn class="country-btn500" color="purple" outlined @click="selectContent('camping')">캠핑</v-btn>
+                    <v-btn class="country-btn500" color="purple" outlined @click="selectContent('poolvilla')">풀빌라</v-btn>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn500" color="grey" outlined @click="backToSelection">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'international'">
+                <div class="info500">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>여행을 원하시는 나라를 선택해주세요</span>
+                </div>
+                <div class="button-group500">
+                    <v-btn class="country-btn500" color="purple" outlined @click="selectContent('japan')">일본</v-btn>
+                    <v-btn class="country-btn500" color="purple" outlined @click="selectContent('vietnam')">베트남</v-btn>
+                    <v-btn class="country-btn500" color="purple" outlined @click="selectContent('thailand')">태국</v-btn>
+                    <v-btn class="country-btn500" color="purple" outlined @click="selectContent('singapore')">싱가포르</v-btn>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn500" color="grey" outlined @click="backToSelection">이전</v-btn>
             </div>
         </div>
     </div>
@@ -20,17 +46,43 @@
     <PagesHeader800/>
     <Bottombar800/>
     <div class="travel-container">
-    <div class="TravelText800">여행지 추천</div>
-    <div class="content-box">
-            <div class="info800">
-              <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
-              <span>여행을 원하시는 지역을 선택해주세요</span>
+        <div class="TravelText800">여행지 추천</div>
+        <div class="content-box">
+            <div v-if="!selectedContent" class="info800">
+                <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                <span>여행을 원하시는 지역을 선택해주세요</span>
             </div>
-            <div class="button-group">
-              <v-btn class="country-btn" color="purple" outlined>국내</v-btn>
-              <v-btn class="country-btn" color="purple" outlined>해외</v-btn>
+            <div class="button-group800" v-if="!selectedContent">
+                <v-btn class="country-btn800" color="purple" outlined @click="selectContent('domestic')">국내</v-btn>
+                <v-btn class="country-btn800" color="purple" outlined @click="selectContent('international')">해외</v-btn>
             </div>
-          </div>
+            <div v-if="selectedContent === 'domestic'">
+                <div class="info800">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>원하시는 여행 유형을 선택해주세요</span>
+                </div>
+                <div class="button-group800">
+                    <v-btn class="country-btn800" color="purple" outlined @click="selectContent('sea')">바다</v-btn>
+                    <v-btn class="country-btn800" color="purple" outlined @click="selectContent('valley')">계곡</v-btn>
+                    <v-btn class="country-btn800" color="purple" outlined @click="selectContent('camping')">캠핑</v-btn>
+                    <v-btn class="country-btn800" color="purple" outlined @click="selectContent('poolvilla')">풀빌라</v-btn>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn800" color="grey" outlined @click="backToSelection">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'international'">
+                <div class="info800">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>여행을 원하시는 나라를 선택해주세요</span>
+                </div>
+                <div class="button-group800">
+                    <v-btn class="country-btn800" color="purple" outlined @click="selectContent('japan')">일본</v-btn>
+                    <v-btn class="country-btn800" color="purple" outlined @click="selectContent('vietnam')">베트남</v-btn>
+                    <v-btn class="country-btn800" color="purple" outlined @click="selectContent('thailand')">태국</v-btn>
+                    <v-btn class="country-btn800" color="purple" outlined @click="selectContent('singapore')">싱가포르</v-btn>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn800" color="grey" outlined @click="backToSelection">이전</v-btn>
+            </div>
+        </div>
     </div>
   </div>
   <div v-else>
@@ -39,13 +91,39 @@
     <div class="travel-container">
         <div class="TravelText1600">여행지 추천</div>
         <div class="content-box">
-            <div class="info1600">
-              <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
-              <span>여행을 원하시는 지역을 선택해주세요</span>
+            <div v-if="!selectedContent" class="info1600">
+                <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                <span>여행을 원하시는 지역을 선택해주세요</span>
             </div>
-            <div class="button-group">
-              <v-btn class="country-btn" color="purple" outlined>국내</v-btn>
-              <v-btn class="country-btn" color="purple" outlined>해외</v-btn>
+            <div class="button-group1600" v-if="!selectedContent">
+                <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('domestic')">국내</v-btn>
+                <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('international')">해외</v-btn>
+            </div>
+            <div v-if="selectedContent === 'domestic'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>원하시는 여행 유형을 선택해주세요</span>
+                </div>
+                <div class="button-group1600">
+                    <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('sea')">바다</v-btn>
+                    <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('valley')">계곡</v-btn>
+                    <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('camping')">캠핑</v-btn>
+                    <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('poolvilla')">풀빌라</v-btn>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToSelection">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'international'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>여행을 원하시는 나라를 선택해주세요</span>
+                </div>
+                <div class="button-group1600">
+                    <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('japan')">일본</v-btn>
+                    <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('vietnam')">베트남</v-btn>
+                    <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('thailand')">태국</v-btn>
+                    <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('singapore')">싱가포르</v-btn>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToSelection">이전</v-btn>
             </div>
         </div>
     </div>
@@ -64,12 +142,19 @@ export default {
   components: {PagesHeader500, PagesHeader800, PagesHeader1600, Bottombar500, Bottombar800, Bottombar1600},
   data() {
     return {
-      windowWidth: window.innerWidth
+      windowWidth: window.innerWidth,
+      selectedContent: null
     }
   },
   methods: {
     handleResize() {
       this.windowWidth = window.innerWidth;
+    },
+    selectContent(contentType) {
+      this.selectedContent = contentType;
+    },
+    backToSelection() {
+          this.selectedContent = null;
     }
   },
   computed: {
@@ -148,7 +233,7 @@ export default {
   display: flex;
   align-items: center;
   margin-top: -2%;
-  margin-bottom: 16%;
+  margin-bottom: 20%;
   font-size: 120%;
   color: #333;
 }
@@ -156,19 +241,53 @@ export default {
   display: flex;
   align-items: center;
   margin-top: -2%;
-  margin-bottom: 14%;
+  margin-bottom: 10%;
   font-size: 150%;
   color: #333;
 }
 .icon {
   margin-right: 10px;
 }
-.button-group {
+.button-group500 {
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-bottom: 16px;
 }
-.country-btn {
-  width: 20%;
+.button-group800 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.button-group1600 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.country-btn500 {
+  width: 48%;
+  margin-bottom: 8px;
+}
+.country-btn800 {
+  width: 48%;
+  margin-bottom: 8px;
+}
+.country-btn1600 {
+  width: 48%;
+  margin-bottom: 8px;
+}
+.back-btn500 {
+  margin-top: 16px;
+  width: 100%;
+}
+.back-btn800 {
+  margin-top: 16px;
+  width: 100%;
+}
+.back-btn1600 {
+  margin-top: 16px;
+  width: 100%;
 }
 </style>
