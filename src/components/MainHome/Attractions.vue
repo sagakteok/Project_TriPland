@@ -1,5 +1,5 @@
 <template>
-  <div style="max-width: 1600px; width: 80vw; margin: auto; margin-top:50px">
+  <div style="max-width: 1000px; width: 80vw; margin: auto; margin-top:50px">
     <v-row>
       <v-scroll-y-reverse-transition>
         <div class="AttractionText" v-show="Transition1">오늘의 여행지</div>

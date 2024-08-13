@@ -30,10 +30,12 @@ export default {
         return {
           width: '115px',
           transition: 'all .3s ease',
+          margin: 'auto'
         }
       } else if (this.LogoIndex === 1) {
         return {
           width: '45px',
+          margin: 'auto'
         };
       }
     }
