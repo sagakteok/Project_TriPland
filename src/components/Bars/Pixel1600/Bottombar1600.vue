@@ -41,8 +41,9 @@ export default {
   width: 45px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-left: 100px;
+  position: relative;
+  left: 25px;
+  margin-left: 83px;
   margin-right: 100px;
   cursor: pointer;
 }
