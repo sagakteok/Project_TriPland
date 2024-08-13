@@ -26,6 +26,7 @@
             <v-btn
                 class="ma-2 icon-button"
                 icon="mdi-home-modern"
+                @click="gotoRoomReservation()" 
             ></v-btn>
             <div class="icon-text"><b> 숙소 예약 </b></div>
           </div>
@@ -49,6 +50,9 @@ export default {
   methods: {
     gotoTravelPick() {
       router.push('/travel-pick')
+    },
+     gotoRoomReservation() {
+      router.push('/room-reservation')
     }
   },
   mounted() {
