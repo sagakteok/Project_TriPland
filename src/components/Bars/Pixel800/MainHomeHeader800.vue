@@ -4,7 +4,7 @@
       <v-app-bar-title>
         <v-img :style="TriPlandLogoStyle" :src="TriPlandLogo" alt="TriPland 로고"/>
       </v-app-bar-title>
-      <v-btn icon="mdi-account-outline" class="MainHomeHeader800ButtonLogoStyle" :ripple="false"/>
+      <v-btn icon="mdi-account-outline" class="MainHomeHeader800ButtonLogoStyle"/>
     </v-app-bar>
   </div>
 </template>
