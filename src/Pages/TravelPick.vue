@@ -112,6 +112,34 @@
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToSelection">이전</v-btn>
             </div>
+            <div v-if="selectedContent === 'sea'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>선택하신 유형 : 바다</span>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'valley'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>선택하신 유형 : 계곡</span>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'camping'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>선택하신 유형 : 캠핑</span>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'poolvilla'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>선택하신 유형 : 풀빌라</span>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
+            </div>
             <div v-if="selectedContent === 'international'">
                 <div class="info1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
@@ -124,6 +152,34 @@
                     <v-btn class="country-btn1600" color="purple" outlined @click="selectContent('singapore')">싱가포르</v-btn>
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToSelection">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'japan'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>선택하신 나라 : 일본</span>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToInternational">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'vietnam'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>선택하신 나라 : 베트남</span>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToInternational">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'thailand'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>선택하신 나라 : 태국</span>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToInternational">이전</v-btn>
+            </div>
+            <div v-if="selectedContent === 'singapore'">
+                <div class="info1600">
+                    <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
+                    <span>선택하신 나라 : 싱가포르</span>
+                </div>
+                <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToInternational">이전</v-btn>
             </div>
         </div>
     </div>
@@ -154,7 +210,13 @@ export default {
       this.selectedContent = contentType;
     },
     backToSelection() {
-          this.selectedContent = null;
+      this.selectedContent = null;
+    },
+    backToDomestic(){
+      this.selectedContent = 'domestic';
+    },
+    backToInternational(){
+      this.selectedContent = 'international';
     }
   },
   computed: {
