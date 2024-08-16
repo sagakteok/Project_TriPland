@@ -2,7 +2,6 @@
   <component :is="currentHeader" /> 
   <v-app>
     <v-container>
-      <!-- 상자 추가 -->
       <div class="box-wrapper">
         <div class="table-container">
           <table border="1">
@@ -39,7 +38,6 @@
           </table>
         </div>
 
-        <!-- 버튼 추가 -->
         <div class="button-container">
           <v-btn class="search">검색</v-btn>
           <v-btn class="confirm">예약확인</v-btn>
@@ -56,6 +54,13 @@
           <v-icon class="star1">mdi-star</v-icon>
           <span class="score1">{{ hotel.rating }}</span>
         </div>
+
+        <v-icon 
+          :icon="hotel.liked ? 'mdi-heart' : 'mdi-heart-outline'" 
+          :color="hotel.liked ? 'red' : ''" 
+          @click="toggleLike(index)"
+          class="heart"
+        ></v-icon>
         
         <div class="box1">
           <span class="rent-room1">{{ hotel.rentDuration }}</span>
@@ -63,7 +68,7 @@
           <span class="room1">{{ hotel.roomDuration }}</span>
           <span class="room-price1">{{ hotel.roomPrice }}</span>
         </div>
-        <v-btn class="reservation1">예약</v-btn>
+        <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
       </div>
 
       <!-- 인원 수 설정 다이얼로그 -->
@@ -118,6 +123,24 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+
+      <!-- 예약 다이얼로그 -->
+      <v-dialog v-model="reservationDialog" max-width="400px">
+        <v-card>
+          <v-card-title class="headline">예약 진행 확인</v-card-title>
+          <v-card-text>
+            {{ selectedHotelName }}에서 예약을 진행하시겠습니까?<br><br>
+            입실: {{ startDate }}<br>
+            퇴실: {{ endDate }}<br><br>
+            성인 {{ adults }}, 아동 {{ children }}
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" @click="ReservationRoom">예</v-btn>
+            <v-btn @click="reservationDialog = false">아니요</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-container>
   </v-app>
   <component :is="currentBottomBar" /> 
@@ -139,6 +162,9 @@ export default {
   data() {
     return {
       dialog: false,
+      reservationDialog: false, // 예약 다이얼로그 상태
+      selectedHotel: null, // 선택된 호텔
+      selectedHotelName: '', // 선택된 호텔 이름
       adults: 1,
       children: 0,
       startDate: '',
@@ -178,7 +204,6 @@ export default {
     };
   },
   computed: {
-    // 화면 크기에 따라 다른 헤더와 바텀바 컴포넌트를 선택합니다.
     currentHeader() {
       const width = window.innerWidth;
       if (width <= 500) {
@@ -211,6 +236,9 @@ export default {
     this.endDate = formatDate(tomorrow);
   },
   methods: {
+    toggleLike(index) {
+      this.hotels[index].liked = !this.hotels[index].liked;
+    },
     increaseAdults() {
       this.adults++;
     },
@@ -222,6 +250,15 @@ export default {
     },
     decreaseChildren() {
       if (this.children > 0) this.children--;
+    },
+    showReservationDialog(hotel) {
+      this.selectedHotel = hotel;
+      this.selectedHotelName = hotel.name; 
+      this.reservationDialog = true; 
+    },
+    ReservationRoom() {
+      console.log(`예약 확인: ${this.selectedHotel.name}`);
+      this.reservationDialog = false; 
     }
   },
   components: {
@@ -237,25 +274,25 @@ export default {
 
 <style>
 .box-wrapper {
-  padding: 20px; /* 상자의 여백 설정 */
+  padding: 20px; 
   padding-top: 40px;
    padding-bottom: 30px;
-  border: 1px solid #F6F6F6; /* 상자의 테두리 */
-  border-radius: 15px; /* 상자의 둥근 테두리 */
-  max-width: 760px; /* 상자의 최대 너비 */
-  margin: 0 auto; /* 상자를 중앙 정렬 */
-  display: flex; /* Flexbox 활성화 */
-  flex-direction: column; /* 수직 방향으로 배치 */
-  align-items: center; /* 수평 중앙 정렬 */
+  border: 1px solid #F6F6F6; 
+  border-radius: 15px; 
+  max-width: 760px; 
+  margin: 0 auto;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
   background-color: #F6F6F6;
 }
 
 .table-container {
   border: 1px solid #A6A6A6; 
   border-radius: 15px; 
-  overflow: hidden; /* 둥근 테두리 밖으로 내용이 넘어가지 않도록 */
-  max-width: 500px; /* 테이블 컨테이너의 최대 너비 설정 */
-  width: 100%; /* 상자 내부에서 너비 100%로 설정 */
+  overflow: hidden; 
+  max-width: 500px; 
+  width: 100%; 
 }
 
 table {
@@ -266,17 +303,17 @@ table {
 .location {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* 왼쪽 정렬 */
-  padding: 8px; /* 아이템 내부에 여백 추가 */
+  justify-content: flex-start; 
+  padding: 8px; 
 }
 
 .people-btn {
-  width: 100%; /* 너비 100%로 설정 */
+  width: 100%; 
   background-color: #FBF8FF !important;
 }
 
 .date {
-  padding: 5px; /* 날짜 셀에 패딩 추가 */
+  padding: 5px; 
 }
 
 input {
@@ -302,6 +339,7 @@ th {
   display: flex;
   gap: 13px;
   margin-top: 15px;
+  z-index: 10;
 }
 
 .hotel-container {
@@ -310,10 +348,10 @@ th {
 }
 
 .line1 {
-  position: absolute; /* 부모 요소 기준으로 위치 조정 */
+  position: absolute; 
   top: 8vh;
-  left: 50%; /* 화면의 50% 지점으로 위치 조정 */
-  transform: translateX(-50%); /* 요소의 너비의 절반만큼 왼쪽으로 이동하여 중앙 정렬 */
+  left: 50%; 
+  transform: translateX(-50%); 
   width: 50vw;
   height: 1.7px; 
   background-color: #EAEAEA; 
@@ -362,7 +400,7 @@ th {
 
 .box1{
   position: relative;
-  bottom: 16vh;
+  bottom: 20vh;
   left: 55vw;
   border: 1px solid #F7F2FF;
   border-radius: 10px;
@@ -399,8 +437,18 @@ th {
 
 .reservation1{
   position: relative !important;
-  bottom: 15vh;
+  bottom: 19vh;
   left: 55.2vw;
   margin-left: 25px;
+  z-index: 10;
 }
+
+.heart {
+  position: relative !important;
+  bottom: 25vh;
+  left: 55.2vw;
+  margin-left: 45px;
+  font-size: 27px !important;
+}
+
 </style>
