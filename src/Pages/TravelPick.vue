@@ -112,10 +112,18 @@
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToSelection">이전</v-btn>
             </div>
+        </div>
             <div v-if="selectedContent === 'sea'">
-                <div class="info1600">
+            <div class="category-box">
+                <div class="category1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
                     <span>선택하신 유형 : 바다</span>
+                </div>
+                <div class="sea">
+                    <span @click="openDialog('Busan')">▶ 인기 여행지 TOP 1 - 부산</span><br>
+                    <span @click="openDialog('Gangneung')">▶ 인기 여행지 TOP 2 - 강릉</span><br>
+                    <span @click="openDialog('Jeju')">▶ 인기 여행지 TOP 3 - 제주도</span><br>
+                    <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
             </div>
@@ -140,7 +148,9 @@
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
             </div>
+            </div>
             <div v-if="selectedContent === 'international'">
+            <div class="content-box">
                 <div class="info1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
                     <span>여행을 원하시는 나라를 선택해주세요</span>
@@ -153,7 +163,9 @@
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToSelection">이전</v-btn>
             </div>
+            </div>
             <div v-if="selectedContent === 'japan'">
+            <div class="category-box">
                 <div class="info1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
                     <span>선택하신 나라 : 일본</span>
@@ -181,7 +193,7 @@
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToInternational">이전</v-btn>
             </div>
-        </div>
+          </div>
     </div>
   </div>
 </template>
@@ -283,6 +295,17 @@ export default {
   width: 80%;
   height: 50%;
 }
+.category-box{
+  background-color: #f4f4f4;
+  padding: 5%;
+  border-radius: 12px;
+  position: fixed;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 66%;
+}
 .info500 {
   display: flex;
   align-items: center;
@@ -303,7 +326,14 @@ export default {
   display: flex;
   align-items: center;
   margin-top: -2%;
-  margin-bottom: 10%;
+  margin-bottom: 7%;
+  font-size: 150%;
+  color: #333;
+}
+.category1600{
+  display: flex;
+  align-items: center;
+  margin-top: -4%;
   font-size: 150%;
   color: #333;
 }
@@ -351,5 +381,34 @@ export default {
 .back-btn1600 {
   margin-top: 16px;
   width: 100%;
+}
+.sea{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sea span {
+  display: block;
+  padding: 1%;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 110%;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sea span:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
 }
 </style>
