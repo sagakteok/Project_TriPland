@@ -1,5 +1,5 @@
 <template>
-  <component :is="currentHeader" /> 
+  <component :is="currentHeader" />
   <v-app>
     <v-container>
       <div class="box-wrapper">
@@ -61,7 +61,7 @@
           @click="toggleLike(index)"
           class="heart"
         ></v-icon>
-        
+
         <div class="box1">
           <span class="rent-room1">{{ hotel.rentDuration }}</span>
           <span class="rent-price1">{{ hotel.rentPrice }}</span>
@@ -129,10 +129,14 @@
         <v-card>
           <v-card-title class="headline">예약 진행 확인</v-card-title>
           <v-card-text>
-            {{ selectedHotelName }}에서 예약을 진행하시겠습니까?<br><br>
+            {{ selectedHotelName }}에서 예약을 진행하시겠습니까?<br><br> 
+            <v-radio-group v-model="reservationType">
+              <v-radio label="대실" value="RoomUse"></v-radio>
+              <v-radio label="숙박" value="DayRoomUse"></v-radio>
+            </v-radio-group>
             입실: {{ startDate }}<br>
             퇴실: {{ endDate }}<br><br>
-            성인 {{ adults }}, 아동 {{ children }}
+            성인 {{ adults }}, 아동 {{ children }}<br><br>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -143,7 +147,7 @@
       </v-dialog>
     </v-container>
   </v-app>
-  <component :is="currentBottomBar" /> 
+  <component :is="currentBottomBar" />
 </template>
 
 <script>
@@ -169,6 +173,7 @@ export default {
       children: 0,
       startDate: '',
       endDate: '',
+      reservationType: null, // 예약 타입 (RoomUse 또는 DayRoomUse)
       hotels: [
         {
           image: room1Image,
@@ -253,12 +258,13 @@ export default {
     },
     showReservationDialog(hotel) {
       this.selectedHotel = hotel;
-      this.selectedHotelName = hotel.name; 
-      this.reservationDialog = true; 
+      this.selectedHotelName = hotel.name;
+      this.reservationDialog = true;
     },
     ReservationRoom() {
       console.log(`예약 확인: ${this.selectedHotel.name}`);
-      this.reservationDialog = false; 
+      console.log(`예약 유형: ${this.reservationType}`);
+      this.reservationDialog = false;
     }
   },
   components: {
@@ -272,27 +278,27 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .box-wrapper {
-  padding: 20px; 
+  padding: 20px;
   padding-top: 40px;
-   padding-bottom: 30px;
-  border: 1px solid #F6F6F6; 
-  border-radius: 15px; 
-  max-width: 760px; 
+  padding-bottom: 30px;
+  border: 1px solid #F6F6F6;
+  border-radius: 15px;
+  max-width: 760px;
   margin: 0 auto;
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #F6F6F6;
 }
 
 .table-container {
-  border: 1px solid #A6A6A6; 
-  border-radius: 15px; 
-  overflow: hidden; 
-  max-width: 500px; 
-  width: 100%; 
+  border: 1px solid #A6A6A6;
+  border-radius: 15px;
+  overflow: hidden;
+  max-width: 500px;
+  width: 100%;
 }
 
 table {
@@ -303,17 +309,17 @@ table {
 .location {
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
-  padding: 8px; 
+  justify-content: flex-start;
+  padding: 8px;
 }
 
 .people-btn {
-  width: 100%; 
+  width: 100%;
   background-color: #FBF8FF !important;
 }
 
 .date {
-  padding: 5px; 
+  padding: 5px;
 }
 
 input {
@@ -329,7 +335,7 @@ th {
 }
 
 .search, .confirm, .reservation1 {
-  background-color: #BB65FF !important; 
+  background-color: #BB65FF !important;
   color: #FFFFFF !important;
 }
 
@@ -348,16 +354,16 @@ th {
 }
 
 .line1 {
-  position: absolute; 
+  position: absolute;
   top: 8vh;
-  left: 50%; 
-  transform: translateX(-50%); 
+  left: 50%;
+  transform: translateX(-50%);
   width: 50vw;
-  height: 1.7px; 
-  background-color: #EAEAEA; 
+  height: 1.7px;
+  background-color: #EAEAEA;
 }
 
-.img1{
+.img1 {
   position: relative;
   top: 14vh;
   left: 13vw;
@@ -365,7 +371,7 @@ th {
   height: 30vh;
 }
 
-.hotel1{
+.hotel1 {
   position: relative;
   bottom: 13vh;
   left: 15vw;
@@ -373,7 +379,7 @@ th {
   font-size: 27px;
 }
 
-.site1{
+.site1 {
   position: relative;
   bottom: 14vh;
   left: 34vw;
@@ -385,7 +391,7 @@ th {
   bottom: 15vh;
   left: 34vw;
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
 .star1 {
@@ -398,7 +404,7 @@ th {
   left: 24px;
 }
 
-.box1{
+.box1 {
   position: relative;
   bottom: 20vh;
   left: 55vw;
@@ -408,34 +414,34 @@ th {
   background-color: #F7F2FF;
 }
 
-.rent-room1{
+.rent-room1 {
   color: #726277;
   font-size: 15px;
   display: flex;
   justify-content: center;
 }
 
-.rent-price1{
+.rent-price1 {
   font-size: 20px;
   display: flex;
   justify-content: center;
   margin-bottom: 8px;
 }
 
-.room1{
+.room1 {
   color: #726277;
   font-size: 15px;
   display: flex;
   justify-content: center;
 }
 
-.room-price1{
+.room-price1 {
   font-size: 20px;
-   display: flex;
+  display: flex;
   justify-content: center;
 }
 
-.reservation1{
+.reservation1 {
   position: relative !important;
   bottom: 19vh;
   left: 55.2vw;
