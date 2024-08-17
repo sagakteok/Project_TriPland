@@ -126,6 +126,9 @@
                     <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
+             <v-dialog v-model="dialog" max-width="300px">
+                <component :is="currentComponent" @close="dialog = false"></component>
+                 </v-dialog>
             </div>
             <div v-if="selectedContent === 'valley'">
                 <div class="info1600">
@@ -205,13 +208,19 @@ import PagesHeader1600 from "../components/Bars/Pixel1600/PagesHeader1600.vue";
 import Bottombar500 from "../components/Bars/Pixel500/Bottombar500.vue";
 import Bottombar800 from "../components/Bars/Pixel800/Bottombar800.vue";
 import Bottombar1600 from "../components/Bars/Pixel1600/Bottombar1600.vue";
+import BusanPopup from "./TravelPick/Busan.vue";
+import GangneungPopup from "./TravelPick/Gangneung.vue";
+import JejuPopup from "./TravelPick/Jeju.vue";
+import YeosuPopup from "./TravelPick/Yeosu.vue";
 export default {
   name: 'TravelPick',
-  components: {PagesHeader500, PagesHeader800, PagesHeader1600, Bottombar500, Bottombar800, Bottombar1600},
+  components: {PagesHeader500, PagesHeader800, PagesHeader1600, Bottombar500, Bottombar800, Bottombar1600,BusanPopup, GangneungPopup, JejuPopup, YeosuPopup},
   data() {
     return {
       windowWidth: window.innerWidth,
-      selectedContent: null
+      selectedContent: null,
+      dialog: false,
+      currentComponent: null
     }
   },
   methods: {
@@ -229,6 +238,18 @@ export default {
     },
     backToInternational(){
       this.selectedContent = 'international';
+    },
+    openDialog(location) {
+      if (location === 'Busan') {
+        this.currentComponent = 'BusanPopup';
+      } else if (location === 'Gangneung') {
+        this.currentComponent = 'GangneungPopup';
+      } else if (location === 'Jeju') {
+        this.currentComponent = 'JejuPopup';
+      } else if (location === 'Yeosu') {
+        this.currentComponent = 'YeosuPopup';
+      }
+      this.dialog = true;  // 다이얼로그 열기
     }
   },
   computed: {
