@@ -40,7 +40,7 @@
 
         <div class="button-container">
           <v-btn class="search">검색</v-btn>
-          <v-btn class="confirm">예약확인</v-btn>
+          <v-btn class="confirm" @click="gotoConfirm()">예약확인</v-btn>
         </div>
       </div>
 
@@ -162,6 +162,7 @@ import room1Image from '@/assets/roomimage/bedroom1.jpg';
 import room2Image from '@/assets/roomimage/bedroom2.jpg';
 import room3Image from '@/assets/roomimage/bedroom3.jpg';
 
+import router from "../router.js";
 export default {
   data() {
     return {
@@ -265,6 +266,9 @@ export default {
       console.log(`예약 확인: ${this.selectedHotel.name}`);
       console.log(`예약 유형: ${this.reservationType}`);
       this.reservationDialog = false;
+    },
+    gotoConfirm() {
+      router.push('/confirm')
     }
   },
   components: {
@@ -274,7 +278,7 @@ export default {
     Bottombar500,
     Bottombar800,
     Bottombar1600
-  }
+  },
 };
 </script>
 
