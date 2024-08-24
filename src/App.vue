@@ -1,7 +1,7 @@
 <template>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <v-app style="background-color: transparent">
-    <v-main style="background-color: #F8F8F8">
+    <v-main style="background-color: #F8F8F8; padding-bottom: 0px;">
       <router-view/>
     </v-main>
   </v-app>
@@ -22,7 +22,8 @@ export default {
       var now = (new Date()).getTime();
       if (now - lastTouchEnd <= 300) {
         event.preventDefault();
-      } lastTouchEnd = now;
+      }
+      lastTouchEnd = now;
     }, false);
   }
 }
