@@ -1,11 +1,11 @@
 <template>
   <div>
-    <v-app-bar elevation="0" class="MainHomeHeader500Style">
+    <v-toolbar elevation="0" class="MainHomeHeader500Style">
       <v-app-bar-title>
         <v-img :style="TriPlandLogoStyle" :src="TriPlandLogo" alt="TriPland 로고"/>
       </v-app-bar-title>
       <v-btn icon="mdi-account-outline" class="MainHomeHeader500ButtonLogoStyle"/>
-    </v-app-bar>
+    </v-toolbar>
   </div>
 </template>
 
@@ -50,7 +50,9 @@ export default {
 
 <style>
 .MainHomeHeader500Style {
-  background: #FFFFFF;
+  max-width: 1200px;
+  margin: auto;
+  background: transparent;
   height: 50px;
   display: flex;
   align-items: center;

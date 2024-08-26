@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-app-bar elevation="0" class="PagesHeader1600Style">
+    <v-toolbar elevation="0" class="PagesHeader1600Style">
       <v-app-bar-title>
         <v-img :style="TriPlandLogoStyle" :src="TriPlandLogo" alt="TriPland 로고"/>
       </v-app-bar-title>
       <v-btn icon="mdi-account-outline" class="PagesHeader1600ButtonLogoStyle" :ripple="false"/>
       <v-btn icon="mdi-dots-vertical" class="PagesHeader1600ButtonLogoStyle" :ripple="false"/>
-    </v-app-bar>
+    </v-toolbar>
   </div>
 </template>
 
@@ -51,7 +51,9 @@ export default {
 
 <style>
 .PagesHeader1600Style {
-  background: #FFFFFF;
+  max-width: 1200px;
+  margin: auto;
+  background: transparent;
 }
 .PagesHeader1600ButtonLogoStyle {
   font-size: 18px;

@@ -2,6 +2,7 @@ cache
 
 # Dependency directories
 node_modules/
+dist/
 
 #VsCode
 .vscode/
