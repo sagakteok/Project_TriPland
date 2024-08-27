@@ -119,7 +119,7 @@
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
                     <span>선택하신 유형 : 바다</span>
                 </div>
-                <div class="sea">
+                <div class="choose">
                     <span @click="openDialog('Busan')">▶ 인기 여행지 TOP 1 - 부산</span><br>
                     <span @click="openDialog('Gangneung')">▶ 인기 여행지 TOP 2 - 강릉</span><br>
                     <span @click="openDialog('Jeju')">▶ 인기 여행지 TOP 3 - 제주도</span><br>
@@ -130,26 +130,59 @@
                 <component :is="currentComponent" @close="dialog = false"></component>
                  </v-dialog>
             </div>
+            </div>
             <div v-if="selectedContent === 'valley'">
-                <div class="info1600">
+            <div class="category-box">
+                <div class="category1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
                     <span>선택하신 유형 : 계곡</span>
                 </div>
+                <div class="choose">
+                    <span @click="openDialog('Busan')">▶ 인기 여행지 TOP 1 - 부산</span><br>
+                    <span @click="openDialog('Gangneung')">▶ 인기 여행지 TOP 2 - 강릉</span><br>
+                    <span @click="openDialog('Jeju')">▶ 인기 여행지 TOP 3 - 제주도</span><br>
+                    <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
+                </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
+             <v-dialog v-model="dialog" max-width="300px">
+                <component :is="currentComponent" @close="dialog = false"></component>
+                 </v-dialog>
+            </div>
             </div>
             <div v-if="selectedContent === 'camping'">
-                <div class="info1600">
+            <div class="category-box">
+                <div class="category1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
                     <span>선택하신 유형 : 캠핑</span>
                 </div>
+                <div class="choose">
+                    <span @click="openDialog('Busan')">▶ 인기 여행지 TOP 1 - 부산</span><br>
+                    <span @click="openDialog('Gangneung')">▶ 인기 여행지 TOP 2 - 강릉</span><br>
+                    <span @click="openDialog('Jeju')">▶ 인기 여행지 TOP 3 - 제주도</span><br>
+                    <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
+                </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
+             <v-dialog v-model="dialog" max-width="300px">
+                <component :is="currentComponent" @close="dialog = false"></component>
+                 </v-dialog>
+            </div>
             </div>
             <div v-if="selectedContent === 'poolvilla'">
-                <div class="info1600">
+            <div class="category-box">
+                <div class="category1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
                     <span>선택하신 유형 : 풀빌라</span>
                 </div>
+                <div class="choose">
+                    <span @click="openDialog('Busan')">▶ 인기 여행지 TOP 1 - 부산</span><br>
+                    <span @click="openDialog('Gangneung')">▶ 인기 여행지 TOP 2 - 강릉</span><br>
+                    <span @click="openDialog('Jeju')">▶ 인기 여행지 TOP 3 - 제주도</span><br>
+                    <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
+                </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
+             <v-dialog v-model="dialog" max-width="300px">
+                <component :is="currentComponent" @close="dialog = false"></component>
+                 </v-dialog>
             </div>
             </div>
             <div v-if="selectedContent === 'international'">
@@ -169,34 +202,76 @@
             </div>
             <div v-if="selectedContent === 'japan'">
             <div class="category-box">
-                <div class="info1600">
+                <div class="category1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
-                    <span>선택하신 나라 : 일본</span>
+                    <span>선택하신 유형 : 일본</span>
+                </div>
+                <div class="choose">
+                    <span @click="openDialog('Busan')">▶ 인기 여행지 TOP 1 - 부산</span><br>
+                    <span @click="openDialog('Gangneung')">▶ 인기 여행지 TOP 2 - 강릉</span><br>
+                    <span @click="openDialog('Jeju')">▶ 인기 여행지 TOP 3 - 제주도</span><br>
+                    <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToInternational">이전</v-btn>
+             <v-dialog v-model="dialog" max-width="300px">
+                <component :is="currentComponent" @close="dialog = false"></component>
+                 </v-dialog>
+            </div>
             </div>
             <div v-if="selectedContent === 'vietnam'">
-                <div class="info1600">
+            <div class="category-box">
+                <div class="category1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
-                    <span>선택하신 나라 : 베트남</span>
+                    <span>선택하신 유형 : 베트남</span>
+                </div>
+                <div class="choose">
+                    <span @click="openDialog('Busan')">▶ 인기 여행지 TOP 1 - 부산</span><br>
+                    <span @click="openDialog('Gangneung')">▶ 인기 여행지 TOP 2 - 강릉</span><br>
+                    <span @click="openDialog('Jeju')">▶ 인기 여행지 TOP 3 - 제주도</span><br>
+                    <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToInternational">이전</v-btn>
+             <v-dialog v-model="dialog" max-width="300px">
+                <component :is="currentComponent" @close="dialog = false"></component>
+                 </v-dialog>
+            </div>
             </div>
             <div v-if="selectedContent === 'thailand'">
-                <div class="info1600">
+            <div class="category-box">
+                <div class="category1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
-                    <span>선택하신 나라 : 태국</span>
+                    <span>선택하신 유형 : 태국</span>
+                </div>
+                <div class="choose">
+                    <span @click="openDialog('Busan')">▶ 인기 여행지 TOP 1 - 부산</span><br>
+                    <span @click="openDialog('Gangneung')">▶ 인기 여행지 TOP 2 - 강릉</span><br>
+                    <span @click="openDialog('Jeju')">▶ 인기 여행지 TOP 3 - 제주도</span><br>
+                    <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToInternational">이전</v-btn>
+             <v-dialog v-model="dialog" max-width="300px">
+                <component :is="currentComponent" @close="dialog = false"></component>
+                 </v-dialog>
+            </div>
             </div>
             <div v-if="selectedContent === 'singapore'">
-                <div class="info1600">
+            <div class="category-box">
+                <div class="category1600">
                     <v-icon color="purple" class="icon">mdi-lightbulb-on-outline</v-icon>
-                    <span>선택하신 나라 : 싱가포르</span>
+                    <span>선택하신 유형 : 싱가포르</span>
+                </div>
+                <div class="choose">
+                    <span @click="openDialog('Busan')">▶ 인기 여행지 TOP 1 - 부산</span><br>
+                    <span @click="openDialog('Gangneung')">▶ 인기 여행지 TOP 2 - 강릉</span><br>
+                    <span @click="openDialog('Jeju')">▶ 인기 여행지 TOP 3 - 제주도</span><br>
+                    <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToInternational">이전</v-btn>
+             <v-dialog v-model="dialog" max-width="300px">
+                <component :is="currentComponent" @close="dialog = false"></component>
+                 </v-dialog>
             </div>
-          </div>
+            </div>
     </div>
   </div>
 </template>
@@ -403,7 +478,7 @@ export default {
   margin-top: 16px;
   width: 100%;
 }
-.sea{
+.choose{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -414,7 +489,7 @@ export default {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.sea span {
+.choose span {
   display: block;
   padding: 1%;
   text-align: center;
@@ -428,7 +503,7 @@ export default {
   transition: all 0.3s ease;
 }
 
-.sea span:hover {
+.choose span:hover {
   background-color: #e0e0e0;
   transform: scale(1.05);
 }
