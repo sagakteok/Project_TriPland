@@ -1,12 +1,17 @@
 <template>
   <div>
-    <v-toolbar elevation="0" class="PagesHeader1600Style">
-      <v-app-bar-title>
-        <v-img :style="TriPlandLogoStyle" :src="TriPlandLogo" alt="TriPland 로고"/>
-      </v-app-bar-title>
-      <v-btn icon="mdi-account-outline" class="PagesHeader1600ButtonLogoStyle" :ripple="false"/>
-      <v-btn icon="mdi-dots-vertical" class="PagesHeader1600ButtonLogoStyle" :ripple="false"/>
-    </v-toolbar>
+    <v-app-bar elevation="0" style="height: 80px;background-color: #F8F8F8; display: flex; justify-content: center">
+      <v-toolbar elevation="0" class="PagesHeader1600Style">
+        <v-app-bar-title>
+          <v-img :style="TriPlandLogoStyle" :src="TriPlandLogo" alt="TriPland 로고"/>
+        </v-app-bar-title>
+        <div style="width: 400px">
+          <v-text-field placeholder="원하는 서류 / 서비스를 검색해보세요" prepend-inner-icon="mdi-magnify" variant="outlined" bg-color="#FFFFFF" base-color="#FFFFFF" hide-details density="comfortable" clearable rounded style="margin-right: 20px;"/>
+        </div>
+        <v-btn icon="mdi-account-outline" class="PagesHeader1600ButtonLogoStyle" :ripple="false"/>
+        <v-btn icon="mdi-dots-vertical" class="PagesHeader1600ButtonLogoStyle" :ripple="false"/>
+      </v-toolbar>
+    </v-app-bar>
   </div>
 </template>
 
@@ -30,13 +35,11 @@ export default {
       if (this.LogoIndex === 0) {
         return {
           width: '130px',
-          transition: 'all .3s ease',
-          margin: 'auto'
+          transition: 'all .3s ease'
         }
       } else if (this.LogoIndex === 1) {
         return {
-          width: '50px',
-          margin: 'auto'
+          width: '50px'
         };
       }
     }
@@ -51,7 +54,7 @@ export default {
 
 <style>
 .PagesHeader1600Style {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: auto;
   background: transparent;
 }
