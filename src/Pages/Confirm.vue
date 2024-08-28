@@ -1,5 +1,5 @@
 <template>
-<component :is="currentHeader" />
+  <component :is="currentHeader" />
   <v-app>
     <div class="main">
       <div class="box-wrapper2">
@@ -26,7 +26,7 @@
         </div>
 
         <div class="gpa3">
-          <v-btn class="reservation2" @click="showReservationDialog(hotel)">결제</v-btn>
+          <v-btn class="reservation2" @click="onClickPay(hotel.name)">결제</v-btn>
           <v-btn class="cancel" @click="">취소</v-btn>
         </div>
       </div>
@@ -50,6 +50,7 @@ import room3Image from '@/assets/roomimage/bedroom3.jpg';
 export default {
   data() {
     return {
+      sdkLoaded: false,
       hotels: [
         {
           image: room1Image,
@@ -106,11 +107,73 @@ export default {
       }
     }
   },
-};
+  mounted() {
+    this.loadIMP()
+      .then(() => {
+        if (window.IMP) {
+          window.IMP.init("imp06611308"); // 실제 상점 ID로 교체
+          console.log("IMP SDK 로드 및 초기화 성공");
+          this.sdkLoaded = true;
+        } else {
+          console.error("IMP 객체를 찾을 수 없습니다.");
+        }
+      })
+      .catch((error) => {
+        console.error("IMP SDK 로드에 실패했습니다:", error);
+      });
+  },
+  methods: {
+    loadIMP() {
+      return new Promise((resolve, reject) => {
+        if (window.IMP) {
+          resolve(); // 이미 로드된 경우 즉시 완료
+          return;
+        }
+
+        const script = document.createElement('script');
+        script.src = "https://cdn.iamport.kr/v1/iamport.js";
+        script.onload = () => {
+          if (window.IMP) {
+            resolve();
+          } else {
+            reject(new Error("IMP 객체가 로드되지 않았습니다."));
+          }
+        };
+        script.onerror = () => {
+          reject(new Error("IMP SDK 스크립트 로드 실패"));
+        };
+        document.head.appendChild(script);
+      });
+    },
+    onClickPay(hotelName) {
+      if (!this.sdkLoaded) {
+        console.error('IMP SDK가 아직 로드되지 않았습니다.');
+        return;
+      }
+
+      const merchantUid = `ORD${new Date().getTime()}`; // 고유 주문번호 생성
+
+      window.IMP.request_pay({
+        pg: "uplus.tlgdacomxpay", // PG와 MID 조합
+        pay_method: "card",
+        merchant_uid: merchantUid,
+        name: `주문명: ${hotelName}`, // 선택한 호텔 이름 사용
+        amount: 15000,
+        m_redirect_url: "http://localhost:5174/payment-success", // 모바일 결제 후 리디렉션 URL
+      }, (rsp) => {
+        if (rsp.success) {
+          alert('결제가 완료되었습니다.');
+          console.log(rsp);
+        } else {
+          alert('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
+        }
+      });
+    }
+  }
+}
 </script>
 
 <style>
-
 .main {
   position: absolute; /* 절대 위치 설정 */
   top: 0; /* 상단에서 0 위치 */
@@ -275,5 +338,4 @@ export default {
   background-color: #BB65FF !important; 
   color: #FFFFFF !important;
 }
-
 </style>
