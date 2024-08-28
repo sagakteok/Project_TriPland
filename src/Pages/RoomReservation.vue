@@ -362,7 +362,7 @@ th {
   top: 8vh;
   left: 50%;
   transform: translateX(-50%);
-  width: 50vw;
+  width: 44.5vw;
   height: 1.7px;
   background-color: #EAEAEA;
 }
@@ -370,30 +370,30 @@ th {
 .img1 {
   position: relative;
   top: 14vh;
-  left: 13vw;
+  left: 12vw;
   width: 18vw;
   height: 30vh;
 }
 
 .hotel1 {
   position: relative;
-  bottom: 13vh;
-  left: 15vw;
+  bottom: 13.5vh;
+  left: 14vw;
   color: #726277;
   font-size: 27px;
 }
 
 .site1 {
   position: relative;
-  bottom: 14vh;
-  left: 34vw;
+  bottom: 14.5vh;
+  left: 33vw;
   font-size: 18px;
 }
 
 .gpa1 {
   position: relative;
-  bottom: 15vh;
-  left: 34vw;
+  bottom: 15.2vh;
+  left: 33vw;
   display: flex;
   align-items: center;
 }
@@ -410,8 +410,8 @@ th {
 
 .box1 {
   position: relative;
-  bottom: 20vh;
-  left: 55vw;
+  bottom: 17vh;
+  left: 49.5vw;
   border: 1px solid #F7F2FF;
   border-radius: 10px;
   width: 120px;
@@ -447,16 +447,16 @@ th {
 
 .reservation1 {
   position: relative !important;
-  bottom: 19vh;
-  left: 55.2vw;
+  bottom: 15.7vh;
+  left: 49.6vw;
   margin-left: 25px;
   z-index: 10;
 }
 
 .heart {
   position: relative !important;
-  bottom: 25vh;
-  left: 55.2vw;
+  bottom: 23.8vh;
+  left: 49.5vw;
   margin-left: 45px;
   font-size: 27px !important;
 }

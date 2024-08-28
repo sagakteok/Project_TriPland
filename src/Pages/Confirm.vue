@@ -7,7 +7,7 @@
       </div>
 
       <div v-for="(hotel, index) in hotels" :key="index" class="reservation-container"
-          :style="{ top: `${37 + index * 45}vh` }">
+          :style="{ top: `${40 + index * 45}vh` }">
         <div class="Line"></div>
         <img :src="hotel.image" alt="Room Image" class="img2" />
         <span class="hotel2">{{ hotel.name }}</span>
@@ -217,7 +217,7 @@ export default {
 
 .Line {
   position: relative; /* 절대 위치 설정 */
-  bottom: 6vh;
+  bottom: 8vh;
   left: 50%; /* 좌측에서 50% 위치 */
   transform: translate(-50%); /* 중앙 정렬을 위해 요소의 크기만큼 이동 */
   width: 80vw; /* .box-wrapper와 동일한 너비 */
@@ -241,7 +241,7 @@ export default {
 
 .hotel2 {
   position: relative;
-  bottom: 39.5vh;
+  bottom: 36.5vh;
   left: 2vw; /* 상대적인 위치 지정 */
   color: #726277;
   font-size:32px;
@@ -250,7 +250,7 @@ export default {
 
 .site2 {
   position: relative;
-  bottom: 40.5vh;
+  bottom: 37.5vh;
   left: 47%; /* 상대적인 위치 지정 */
   font-size: clamp(12px, 3vw, 18px); /* 최소 14px, 최대 28px로 설정, 4vw로 계산된 값 */
   max-width: 100%; /* 부모 요소를 넘어가지 않도록 제한 */
@@ -258,7 +258,7 @@ export default {
 
 .gpa2 {
   position: relative;
-  bottom: 41.5vh;
+  bottom: 38.2vh;
   left: 47%; /* 상대적인 위치 지정 */
   display: flex;
   align-items: center; 
