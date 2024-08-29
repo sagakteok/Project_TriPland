@@ -1,38 +1,100 @@
 <template>
-  <component :is="currentHeader" />
-  <v-app>
-    <div class="main">
-      <div class="box-wrapper2">
-        <span class="confirm2">예약 확인</span>
+  <div>
+    <!-- Header와 BottomBar는 v-app 밖에 위치 -->
+    <component :is="currentHeader" />
+
+    <v-app>
+      <div v-if="screenWidth <= 500">
+        <!-- 500px 이하 화면 크기용 템플릿 -->
+        <div class="main">
+          <div class="box-wrapper2">
+            <span class="confirm2">예약 확인</span>
+          </div>
+          <div v-for="(hotel, index) in hotels" :key="index" class="reservation-container">
+            <div class="Line"></div>
+            <img :src="hotel.image" alt="Room Image" class="img2" />
+            <span class="hotel2">{{ hotel.name }}</span>
+            <div class="site2">{{ hotel.address }}</div>
+            <div class="gpa2">
+              <v-icon class="star2">mdi-star</v-icon>
+              <span class="score2">{{ hotel.rating }}</span>
+            </div>
+            <div class="box2">
+              <span class="room-select">숙박</span><br>
+              <span class="entrance">입실: 2024-08-17</span><br>
+              <span class="out">퇴실: 2024-08-17</span><br>
+              <span class="people">인원: 성인2, 아동1</span>
+            </div>
+            <div class="gpa3">
+              <v-btn class="reservation2" @click="onClickPay(hotel.name)">결제</v-btn>
+              <v-btn class="cancel" @click="onClickCancel(hotel.name)">취소</v-btn>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div v-for="(hotel, index) in hotels" :key="index" class="reservation-container"
-          :style="{ top: `${40 + index * 45}vh` }">
-        <div class="Line"></div>
-        <img :src="hotel.image" alt="Room Image" class="img2" />
-        <span class="hotel2">{{ hotel.name }}</span>
-        <div class="site2">{{ hotel.address }}</div>
-
-        <div class="gpa2">
-          <v-icon class="star2">mdi-star</v-icon>
-          <span class="score2">{{ hotel.rating }}</span>
-        </div>
-
-        <div class="box2">
-          <span class="room-select">숙박</span>
-          <span class="entrance">입실: 2024-08-17</span>
-          <span class="out">퇴실: 2024-08-17</span>
-          <span class="people">인원: 성인2, 아동1</span>
-        </div>
-
-        <div class="gpa3">
-          <v-btn class="reservation2" @click="onClickPay(hotel.name)">결제</v-btn>
-          <v-btn class="cancel" @click="">취소</v-btn>
+      <div v-else-if="screenWidth <= 800">
+        <!-- 501px ~ 800px 화면 크기용 템플릿 -->
+        <div class="main">
+          <div class="box-wrapper2">
+            <span class="confirm2">예약 확인</span>
+          </div>
+          <div v-for="(hotel, index) in hotels" :key="index" class="reservation-container">
+            <div class="Line"></div>
+            <img :src="hotel.image" alt="Room Image" class="img2" />
+            <span class="hotel2">{{ hotel.name }}</span>
+            <div class="site2">{{ hotel.address }}</div>
+            <div class="gpa2">
+              <v-icon class="star2">mdi-star</v-icon>
+              <span class="score2">{{ hotel.rating }}</span>
+            </div>
+            <div class="box2">
+              <span class="room-select">숙박</span><br>
+              <span class="entrance">입실: 2024-08-17</span><br>
+              <span class="out">퇴실: 2024-08-17</span><br>
+              <span class="people">인원: 성인2, 아동1</span>
+            </div>
+            <div class="gpa3">
+              <v-btn class="reservation2" @click="onClickPay(hotel.name)">결제</v-btn>
+              <v-btn class="cancel" @click="onClickCancel(hotel.name)">취소</v-btn>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </v-app>
-  <component :is="currentBottomBar" />
+
+      <div v-else>
+        <!-- 801px 이상 화면 크기용 템플릿 -->
+        <div class="main">
+          <div class="box-wrapper2">
+            <span class="confirm2">예약 확인</span>
+          </div>
+          <div v-for="(hotel, index) in hotels" :key="index" class="reservation-container">
+            <div class="Line"></div>
+            <img :src="hotel.image" alt="Room Image" class="img2" />
+            <span class="hotel2">{{ hotel.name }}</span>
+            <div class="site2">{{ hotel.address }}</div>
+            <div class="gpa2">
+              <v-icon class="star2">mdi-star</v-icon>
+              <span class="score2">{{ hotel.rating }}</span>
+            </div>
+            <div class="box2">
+              <span class="room-select">숙박</span><br>
+              <span class="entrance">입실: 2024-08-17</span><br>
+              <span class="out">퇴실: 2024-08-17</span><br>
+              <span class="people">인원: 성인2, 아동1</span>
+            </div>
+            <div class="gpa3">
+              <v-btn class="reservation2" @click="onClickPay(hotel.name)">결제</v-btn>
+              <v-btn class="cancel" @click="onClickCancel(hotel.name)">취소</v-btn>
+            </div>
+          </div>
+        </div>
+      </div>
+    </v-app>
+    
+    <!-- Footer는 v-app 밖에 위치 -->
+    <component :is="currentBottomBar" />
+  </div>
 </template>
 
 <script>
@@ -51,6 +113,7 @@ export default {
   data() {
     return {
       sdkLoaded: false,
+      screenWidth: window.innerWidth,
       hotels: [
         {
           image: room1Image,
@@ -87,20 +150,18 @@ export default {
   },
   computed: {
     currentHeader() {
-      const width = window.innerWidth;
-      if (width <= 500) {
+      if (this.screenWidth <= 500) {
         return PagesHeader500;
-      } else if (width <= 800) {
+      } else if (this.screenWidth <= 800) {
         return PagesHeader800;
       } else {
         return PagesHeader1600;
       }
     },
     currentBottomBar() {
-      const width = window.innerWidth;
-      if (width <= 500) {
+      if (this.screenWidth <= 500) {
         return Bottombar500;
-      } else if (width <= 800) {
+      } else if (this.screenWidth <= 800) {
         return Bottombar800;
       } else {
         return Bottombar1600;
@@ -121,6 +182,13 @@ export default {
       .catch((error) => {
         console.error("IMP SDK 로드에 실패했습니다:", error);
       });
+
+    // 화면 크기 변경 시 반응형 업데이트
+    window.addEventListener('resize', this.updateScreenWidth);
+  },
+  beforeDestroy() {
+    // 컴포넌트가 파괴될 때 이벤트 리스너 제거
+    window.removeEventListener('resize', this.updateScreenWidth);
   },
   methods: {
     loadIMP() {
@@ -168,174 +236,306 @@ export default {
           alert('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
         }
       });
+    },
+    onClickCancel(hotelName) {
+      alert(`${hotelName} 예약이 취소되었습니다.`);
+    },
+    updateScreenWidth() {
+      this.screenWidth = window.innerWidth;
     }
   }
 }
 </script>
 
 <style>
+/* 기본 스타일 */
 .main {
-  position: absolute; /* 절대 위치 설정 */
-  top: 0; /* 상단에서 0 위치 */
-  left: 50%; /* 좌측에서 50% 위치 */
-  transform: translateX(-50%); /* 수평 중앙 정렬 */
-  width: 80vw; /* 화면 너비의 80%로 설정 (최대 너비는 700px) */
-  max-width: 700px; /* 최대 너비 설정 */
-  height: 180vh; /* 화면 높이의 100%로 설정 */
-  display: flex; /* Flexbox 사용 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  max-width: 700px;
   padding: 20px;
-  padding-top: 30px;
-  padding-bottom: 30px;
   border: 1px solid #F6F6F6;
+  background-color: #F6F6F6;
+  margin: 0 auto;
 }
 
 .box-wrapper2 {
-  position: absolute; /* 절대 위치 설정 */
-  top: 8%; /* 상단에서 15% 위치 */
-  left: 50%; /* 좌측에서 50% 위치 */
-  transform: translate(-50%, -25%); /* 중앙 정렬을 위해 요소의 크기만큼 이동 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
-  padding-top: 30px;
-  padding-bottom: 30px;
   border: 1px solid #F6F6F6;
   border-radius: 15px;
-  max-width: 700px; /* 최대 너비 설정 */
-  width: 80vw; /* 화면 너비의 80%로 설정 (최대 너비는 700px) */
+  max-width: 700px;
+  width: 80vw;
   background-color: #F6F6F6;
-  display: flex; /* Flexbox 사용 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
+  margin-bottom: 20px;
+  position: relative;
+  top: 20px;
 }
 
 .confirm2 {
-  font-size: 27px; /* 원하는 폰트 크기로 설정 */
+  font-size: 2rem;
   color: #8142DB;
-  font-weight: bold; /* 폰트 굵기 설정 */
+  font-weight: bold;
 }
 
 .Line {
-  position: relative; /* 절대 위치 설정 */
-  bottom: 8vh;
-  left: 50%; /* 좌측에서 50% 위치 */
-  transform: translate(-50%); /* 중앙 정렬을 위해 요소의 크기만큼 이동 */
-  width: 80vw; /* .box-wrapper와 동일한 너비 */
-  max-width: 700px; /* .box-wrapper와 동일한 최대 너비 */
-  height: 1px; /* 선의 두께 설정 */
-  background-color: #EAEAEA; /* 선의 색상 */
+  background-color: #EAEAEA;
+  height: 1px;
+  margin-bottom: 30px;
+  position: relative;
 }
 
 .reservation-container {
-  position: absolute; /* 절대 위치 설정 */
-  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .img2 {
-  width: 40%; /* 부모 요소의 너비에 맞게 조정 */
-  max-width: 300px; /* 최대 너비를 설정 */
-  height: 240px; /* 고정된 높이 설정 (필요에 따라 조정) */
-  object-fit: cover; /* 비율에 맞게 자르기 */
-  margin-bottom: 10vh; /* 아래쪽 여백 추가 */
+  width: 100%;
+  max-width: 300px;
+  height: 240px;
+  object-fit: cover;
+  margin-bottom: 20px;
 }
 
 .hotel2 {
-  position: relative;
-  bottom: 36.5vh;
-  left: 2vw; /* 상대적인 위치 지정 */
+  text-align: center;
   color: #726277;
-  font-size:32px;
-  font-size: clamp(16px, 5vw, 32px); /* 최소 16px, 최대 32px로 설정, 5vw로 계산된 값 */
+  font-size: 1.5rem;
+  position: relative;
 }
 
 .site2 {
+  font-size: 1rem;
+  color: #6D6D6D;
+  text-align: center;
   position: relative;
-  bottom: 37.5vh;
-  left: 47%; /* 상대적인 위치 지정 */
-  font-size: clamp(12px, 3vw, 18px); /* 최소 14px, 최대 28px로 설정, 4vw로 계산된 값 */
-  max-width: 100%; /* 부모 요소를 넘어가지 않도록 제한 */
 }
 
 .gpa2 {
-  position: relative;
-  bottom: 38.2vh;
-  left: 47%; /* 상대적인 위치 지정 */
   display: flex;
-  align-items: center; 
+  text-align: center;
+  position: relative;
 }
 
 .star2 {
   color: #F9DE00;
-  font-size: 25px;
+  font-size: 1.5rem;
 }
 
 .score2 {
-  font-size: 17px;
-  left: 24px;
+  font-size: 1rem;
 }
 
 .box2 {
-  position: absolute;
-  bottom: 24vh;
-  right: 0%; /* 상대적인 위치 지정 */
-  font-size: clamp(12px, 3vw, 18px); /* 최소 14px, 최대 28px로 설정, 4vw로 계산된 값 */
-  max-width: 100%; /* 부모 요소를 넘어가지 않도록 제한 */
   border: 1px solid #F7F2FF;
   border-radius: 10px;
-  width: 160px;
   background-color: #F7F2FF;
+  padding: 10px;
+  text-align: center;
 }
 
-.room-select {
-  color: #726277;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 4px;
-  margin-top: 4px;
-}
-
-.entrance {
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-}
-
-.out {
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
+.room-select,
+.entrance,
+.out,
 .people {
-  font-size: 14.5px;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  margin: 4px 0;
 }
 
-.gpa3{
-  position: absolute;
-  bottom: 18vh;
-  right: 1%; /* 상대적인 위치 지정 */
-  display: flex;
-  align-items: center; 
+.gpa3 {
+  position: relative;
 }
 
-.reservation2 {
-  margin-right: 5px;
-  z-index: 10; /* 버튼을 다른 요소 위로 표시 */
-  width: 70px;
+.reservation2,
+.cancel {
+  background-color: #BB65FF;
+  color: #FFFFFF;
+  margin: 0 10px;
 }
 
-.cancel{
-  z-index: 10; /* 버튼을 다른 요소 위로 표시 */
-  width: 70px;
+/* 미디어 쿼리 */
+@media (max-width: 500px) {
+  .confirm2 {
+    font-size: 1.5rem;
+  }
+
+  .Line{
+    width: 108%;
+  }
+  
+  .img2 {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .hotel2 {
+    font-size: 1.2rem;
+    bottom: 12px;
+  }
+
+  .site2 {
+    font-size: 0.9rem;
+    bottom: 17px;
+  }
+
+  .gpa2{
+    bottom: 18px;
+    right: 9px;
+  }
+
+  .star2{
+    font-size: 1.2rem;
+  }
+
+  .score2{
+    font-size: 0.8rem;
+  }
+  
+  .box2 {
+    width: 160px;
+    font-size: 0.9rem;
+  }
+
+  .room-select,
+  .entrance,
+  .out,
+  .people {
+    font-size: 0.8rem;
+  }
+
+  .gpa3{
+    top: 6px;
+  }
+
+  .reservation2, .cancel {
+    width: 30px; /* 너비 조정 */
+    font-size: 0.7rem; /* Font size 조정 */
+  }
 }
 
-.cancel, .reservation2 {
-  background-color: #BB65FF !important; 
-  color: #FFFFFF !important;
+@media (min-width: 501px) and (max-width: 800px) {
+  .confirm2 {
+    font-size: 1.8rem;
+  }
+
+  .Line{
+    width: 107%;
+  }
+  
+  .img2 {
+    max-width: 70%;
+    height: auto;
+  }
+  
+  .hotel2 {
+    font-size: 1.4rem;
+    bottom: 15px;
+  }
+
+  .site2 {
+    font-size: 1rem;
+    bottom: 18px;
+  }
+
+   .gpa2{
+    bottom: 19px;
+    right: 8px;
+  }
+
+  .star2{
+    font-size: 1.3rem;
+  }
+
+  .score2{
+    font-size: 0.9rem;
+  }
+  
+  .box2 {
+    width: 200px;
+    font-size: 1rem;
+  }
+
+  .room-select,
+  .entrance,
+  .out,
+  .people {
+    font-size: 0.9rem;
+  }
+
+  .gpa3{
+    top: 8px;
+  }
+  
+  .reservation2, .cancel {
+    width: 30px; /* 너비 조정 */
+    font-size: 0.8rem; /* Font size 조정 */
+  }
 }
+
+@media (min-width: 801px) {
+  .confirm2 {
+    font-size: 2rem;
+  }
+
+  .Line{
+    width: 106%;
+  }
+  
+  .img2 {
+    max-width: 400px;
+    height: 240px;
+  }
+  
+  .hotel2 {
+    font-size: 1.5rem;
+    bottom: 18px;
+  }
+
+  .site2 {
+    font-size: 1.1rem;
+    bottom: 19px;
+  }
+
+  .gpa2{
+    bottom: 20px;
+    right: 7px;
+  }
+
+  .star2{
+    font-size: 1.4rem;
+  }
+
+  .score2{
+    font-size: 1rem;
+  }
+  
+  .box2 {
+    width: 240px;
+    font-size: 1rem;
+  }
+
+  .room-select,
+  .entrance,
+  .out,
+  .people {
+    font-size: 1rem;
+  }
+
+  .gpa3{
+    top: 10px;
+  }
+  
+  .reservation2, .cancel {
+    width: 70px; /* 너비 조정 */
+    font-size: 0.9rem; /* Font size 조정 */
+  }
+}
+
 </style>
