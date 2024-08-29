@@ -126,7 +126,7 @@
                     <span @click="openDialog('Yeosu')">▶ 인기 여행지 TOP 4 - 여수</span><br>
                 </div>
                 <v-btn v-if="selectedContent" class="back-btn1600" color="grey" outlined @click="backToDomestic">이전</v-btn>
-             <v-dialog v-model="dialog" max-width="300px">
+             <v-dialog v-model="dialog" max-width="dialogWidth">
                 <component :is="currentComponent" @close="dialog = false"></component>
                  </v-dialog>
             </div>
@@ -287,16 +287,22 @@ import BusanPopup from "./TravelPick/Busan.vue";
 import GangneungPopup from "./TravelPick/Gangneung.vue";
 import JejuPopup from "./TravelPick/Jeju.vue";
 import YeosuPopup from "./TravelPick/Yeosu.vue";
+
 export default {
   name: 'TravelPick',
-  components: {PagesHeader500, PagesHeader800, PagesHeader1600, Bottombar500, Bottombar800, Bottombar1600,BusanPopup, GangneungPopup, JejuPopup, YeosuPopup},
+  components: {
+    PagesHeader500, PagesHeader800, PagesHeader1600,
+    Bottombar500, Bottombar800, Bottombar1600,
+    BusanPopup, GangneungPopup, JejuPopup, YeosuPopup
+  },
   data() {
     return {
       windowWidth: window.innerWidth,
       selectedContent: null,
       dialog: false,
-      currentComponent: null
-    }
+      currentComponent: null,
+      dialogWidth: '300px', // 기본 다이얼로그 너비
+    };
   },
   methods: {
     handleResize() {
@@ -308,21 +314,25 @@ export default {
     backToSelection() {
       this.selectedContent = null;
     },
-    backToDomestic(){
+    backToDomestic() {
       this.selectedContent = 'domestic';
     },
-    backToInternational(){
+    backToInternational() {
       this.selectedContent = 'international';
     },
     openDialog(location) {
       if (location === 'Busan') {
         this.currentComponent = 'BusanPopup';
+        this.dialogWidth = '300px';  // 부산 팝업의 다이얼로그 너비 설정
       } else if (location === 'Gangneung') {
         this.currentComponent = 'GangneungPopup';
+        this.dialogWidth = '300px';  // 기본값 사용
       } else if (location === 'Jeju') {
         this.currentComponent = 'JejuPopup';
+        this.dialogWidth = '300px';  // 기본값 사용
       } else if (location === 'Yeosu') {
         this.currentComponent = 'YeosuPopup';
+        this.dialogWidth = '300px';  // 기본값 사용
       }
       this.dialog = true;  // 다이얼로그 열기
     }
@@ -343,6 +353,7 @@ export default {
   }
 };
 </script>
+
 
 <style>
 .TravelText500{
