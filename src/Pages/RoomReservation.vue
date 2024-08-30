@@ -44,31 +44,84 @@
         </div>
       </div>
 
-      <div v-for="(hotel, index) in hotels" :key="index" class="hotel-container">
-        <div class="line1"></div>
-        <img :src="hotel.image" alt="Room Image" class="img1" />
-        <span class="hotel1">{{ hotel.name }}</span>
-        <div class="site1">{{ hotel.address }}</div>
-
-        <div class="gpa1">
-          <v-icon class="star1">mdi-star</v-icon>
-          <span class="score1">{{ hotel.rating }}</span>
+      <!-- 화면 너비에 따라 다른 레이아웃을 렌더링 -->
+      <div v-if="screenWidth <= 500">
+        <!-- 모바일 레이아웃 -->
+        <div v-for="(hotel, index) in hotels" :key="index" class="hotel-container">
+          <img :src="hotel.image" alt="Room Image" class="img1" />
+          <span class="hotel1">{{ hotel.name }}</span>
+          <div class="site1">{{ hotel.address }}</div>
+          <div class="gpa1">
+            <v-icon class="star1">mdi-star</v-icon>
+            <span class="score1">{{ hotel.rating }}</span>
+          </div>
+          <v-icon 
+            :icon="hotel.liked ? 'mdi-heart' : 'mdi-heart-outline'" 
+            :color="hotel.liked ? 'red' : ''" 
+            @click="toggleLike(index)"
+            class="heart"
+          ></v-icon>
+          <div class="box1">
+            <span class="rent-room1">{{ hotel.rentDuration }}</span>
+            <span class="rent-price1">{{ hotel.rentPrice }}</span>
+            <span class="room1">{{ hotel.roomDuration }}</span>
+            <span class="room-price1">{{ hotel.roomPrice }}</span>
+          </div>
+          <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
         </div>
+      </div>
 
-        <v-icon 
-          :icon="hotel.liked ? 'mdi-heart' : 'mdi-heart-outline'" 
-          :color="hotel.liked ? 'red' : ''" 
-          @click="toggleLike(index)"
-          class="heart"
-        ></v-icon>
-
-        <div class="box1">
-          <span class="rent-room1">{{ hotel.rentDuration }}</span>
-          <span class="rent-price1">{{ hotel.rentPrice }}</span>
-          <span class="room1">{{ hotel.roomDuration }}</span>
-          <span class="room-price1">{{ hotel.roomPrice }}</span>
+      <div v-else-if="screenWidth <= 800">
+        <!-- 태블릿 레이아웃 -->
+        <div v-for="(hotel, index) in hotels" :key="index" class="hotel-container">
+          <img :src="hotel.image" alt="Room Image" class="img1" />
+          <span class="hotel1">{{ hotel.name }}</span>
+          <div class="site1">{{ hotel.address }}</div>
+          <div class="gpa1">
+            <v-icon class="star1">mdi-star</v-icon>
+            <span class="score1">{{ hotel.rating }}</span>
+          </div>
+          <v-icon 
+            :icon="hotel.liked ? 'mdi-heart' : 'mdi-heart-outline'" 
+            :color="hotel.liked ? 'red' : ''" 
+            @click="toggleLike(index)"
+            class="heart"
+          ></v-icon>
+          <div class="box1">
+            <span class="rent-room1">{{ hotel.rentDuration }}</span>
+            <span class="rent-price1">{{ hotel.rentPrice }}</span>
+            <span class="room1">{{ hotel.roomDuration }}</span>
+            <span class="room-price1">{{ hotel.roomPrice }}</span>
+          </div>
+          <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
         </div>
-        <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
+      </div>
+
+      <div v-else>
+        <!-- 데스크탑 레이아웃 -->
+          <div v-for="(hotel, index) in hotels" :key="index" class="hotel-container">
+            <div class="line1"></div>
+            <img :src="hotel.image" alt="Room Image" class="img1" />
+            <span class="hotel1">{{ hotel.name }}</span>
+            <div class="site1">{{ hotel.address }}</div>
+            <div class="gpa1">
+              <v-icon class="star1">mdi-star</v-icon>
+              <span class="score1">{{ hotel.rating }}</span>
+            </div>
+            <v-icon 
+              :icon="hotel.liked ? 'mdi-heart' : 'mdi-heart-outline'" 
+              :color="hotel.liked ? 'red' : ''" 
+              @click="toggleLike(index)"
+              class="heart"
+            ></v-icon>
+            <div class="box1">
+              <span class="rent-room1">{{ hotel.rentDuration }}</span>
+              <span class="rent-price1">{{ hotel.rentPrice }}</span>
+              <span class="room1">{{ hotel.roomDuration }}</span>
+              <span class="room-price1">{{ hotel.roomPrice }}</span>
+            </div>
+            <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
+          </div>
       </div>
 
       <!-- 인원 수 설정 다이얼로그 -->
@@ -150,6 +203,7 @@
   <component :is="currentBottomBar" />
 </template>
 
+
 <script>
 import PagesHeader500 from "../components/Bars/Pixel500/PagesHeader500.vue";
 import PagesHeader800 from "../components/Bars/Pixel800/PagesHeader800.vue";
@@ -163,6 +217,7 @@ import room2Image from '@/assets/roomimage/bedroom2.jpg';
 import room3Image from '@/assets/roomimage/bedroom3.jpg';
 
 import router from "../router.js";
+
 export default {
   data() {
     return {
@@ -206,25 +261,24 @@ export default {
           roomDuration: '숙박 21:00~',
           roomPrice: '60,000원~'
         }
-      ]
+      ],
+      screenWidth: window.innerWidth // 화면 너비를 추적
     };
   },
   computed: {
     currentHeader() {
-      const width = window.innerWidth;
-      if (width <= 500) {
+      if (this.screenWidth <= 500) {
         return PagesHeader500;
-      } else if (width <= 800) {
+      } else if (this.screenWidth <= 800) {
         return PagesHeader800;
       } else {
         return PagesHeader1600;
       }
     },
     currentBottomBar() {
-      const width = window.innerWidth;
-      if (width <= 500) {
+      if (this.screenWidth <= 500) {
         return Bottombar500;
-      } else if (width <= 800) {
+      } else if (this.screenWidth <= 800) {
         return Bottombar800;
       } else {
         return Bottombar1600;
@@ -232,6 +286,9 @@ export default {
     }
   },
   mounted() {
+    window.addEventListener('resize', this.updateScreenWidth);
+    this.updateScreenWidth();
+
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
@@ -241,7 +298,13 @@ export default {
     this.startDate = formatDate(today);
     this.endDate = formatDate(tomorrow);
   },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateScreenWidth);
+  },
   methods: {
+    updateScreenWidth() {
+      this.screenWidth = window.innerWidth;
+    },
     toggleLike(index) {
       this.hotels[index].liked = !this.hotels[index].liked;
     },
@@ -268,7 +331,7 @@ export default {
       this.reservationDialog = false;
     },
     gotoConfirm() {
-      router.push('/confirm')
+      router.push('/confirm');
     }
   },
   components: {
@@ -278,19 +341,23 @@ export default {
     Bottombar500,
     Bottombar800,
     Bottombar1600
-  },
+  }
 };
 </script>
 
+
 <style scoped>
+/* 기본 스타일 */
 .box-wrapper {
   padding: 20px;
   padding-top: 40px;
   padding-bottom: 30px;
   border: 1px solid #F6F6F6;
   border-radius: 15px;
-  max-width: 760px;
+  max-width: 700px; /* 첫 번째 코드와 동일하게 설정 */
+  width: 80vw; /* 첫 번째 코드와 동일하게 설정 */
   margin: 0 auto;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -344,121 +411,294 @@ th {
 }
 
 .button-container {
-  position: relative;
-  left: 10vw;
   display: flex;
-  gap: 13px;
   margin-top: 15px;
-  z-index: 10;
+  justify-content: center;
+  position: relative;
 }
 
 .hotel-container {
-  position: relative;
-  height: 42vh;
-}
-
-.line1 {
-  position: absolute;
-  top: 8vh;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 44.5vw;
-  height: 1.7px;
-  background-color: #EAEAEA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .img1 {
+  width: 100%; 
+  max-width: 300px; /* 첫 번째 코드와 동일하게 설정 */
+  height: 240px; /* 첫 번째 코드와 동일하게 설정 */
+  object-fit: cover; /* 첫 번째 코드와 동일하게 설정 */
+  margin-bottom: 20px;
   position: relative;
-  top: 14vh;
-  left: 12vw;
-  width: 18vw;
-  height: 30vh;
 }
 
 .hotel1 {
-  position: relative;
-  bottom: 13.5vh;
-  left: 14vw;
+  font-size: 1.5rem; /* 첫 번째 코드와 동일하게 설정 */
   color: #726277;
-  font-size: 27px;
+  text-align: center;
+  position: relative;
 }
 
 .site1 {
+  font-size: 1rem; /* 첫 번째 코드와 동일하게 설정 */
+  text-align: center;
   position: relative;
-  bottom: 14.5vh;
-  left: 33vw;
-  font-size: 18px;
 }
 
 .gpa1 {
-  position: relative;
-  bottom: 15.2vh;
-  left: 33vw;
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .star1 {
   color: #F9DE00;
-  font-size: 25px;
+  font-size: 1.5rem; /* 첫 번째 코드와 동일하게 설정 */
 }
 
 .score1 {
-  font-size: 17px;
-  left: 24px;
+  font-size: 1rem; /* 첫 번째 코드와 동일하게 설정 */
 }
 
 .box1 {
-  position: relative;
-  bottom: 17vh;
-  left: 49.5vw;
   border: 1px solid #F7F2FF;
   border-radius: 10px;
-  width: 120px;
   background-color: #F7F2FF;
+  text-align: center;
+  padding: 10px;
+  position: relative;
 }
 
-.rent-room1 {
+.rent-room1, .room1 {
   color: #726277;
-  font-size: 15px;
   display: flex;
   justify-content: center;
 }
 
-.rent-price1 {
-  font-size: 20px;
+.rent-price1, .room-price1 {
   display: flex;
   justify-content: center;
   margin-bottom: 8px;
 }
 
-.room1 {
-  color: #726277;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
+.reservation1, .heart {
+  position: relative;
 }
 
-.room-price1 {
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
+/* 미디어 쿼리 */
+@media (max-width: 500px) {
+  .box-wrapper{
+    margin-bottom: 20px;
+  }
+
+  .hotel-container {
+     height: 40vh;
+  }
+
+  .button-container {
+    gap: 10px;
+    left: 15%;
+  }
+
+  .img1 {
+    max-width: 160px; /* 첫 번째 코드와 동일하게 설정 */
+    height: auto; /* 첫 번째 코드와 동일하게 설정 */
+    top: 15px;
+  }
+
+  .hotel1 {
+    font-size: 1.2rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 1px;
+  }
+
+  .site1 {
+    font-size: 0.9rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 6px;
+  }
+
+  .gpa1 {
+    flex-direction: row;
+    margin-top: 12px;
+    bottom: 20px;
+    right: 8px;
+  }
+
+  .star1 {
+    font-size: 1.2rem; /* 첫 번째 코드와 동일하게 설정 */
+  }
+
+  .score1 {
+    font-size: 0.8rem; /* 첫 번째 코드와 동일하게 설정 */
+  }
+
+  .box1 {
+    width: 150px; /* 첫 번째 코드와 동일하게 설정 */
+    font-size: 0.9rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 30px;
+  }
+
+  .rent-room1, .room1{
+    font-size: 0.8rem;
+  }
+  .rent-price1, .room-price1{
+     font-size: 1rem;
+  }
+
+  .reservation1 {
+    width: 30px; /* 첫 번째 코드와 동일하게 설정 */
+    font-size: 0.7rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 23px;
+  }
+
+  .heart {
+    font-size: 1.3rem;
+    bottom: 78px;
+    left: 44px;
+  }
 }
 
-.reservation1 {
-  position: relative !important;
-  bottom: 15.7vh;
-  left: 49.6vw;
-  margin-left: 25px;
-  z-index: 10;
+@media (min-width: 501px) and (max-width: 800px) {
+  .box-wrapper{
+    margin-bottom: 20px;
+  }
+
+  .hotel-container {
+     height: 60vh;
+  }
+
+  .button-container {
+    gap: 13px;
+    left: 26%;
+  }
+
+  .img1 {
+    max-width: 280px; /* 첫 번째 코드와 동일하게 설정 */
+    height: auto; /* 첫 번째 코드와 동일하게 설정 */
+    top: 20px;
+  }
+
+  .hotel1 {
+    font-size: 1.4rem; /* 첫 번째 코드와 동일하게 설정 */
+  }
+
+  .site1 {
+    font-size: 1rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 2px;
+  }
+
+  .gpa1 {
+    flex-direction: row;
+    margin-top: 15px;
+    bottom: 18px;
+    right: 8px;
+  }
+
+  .star1 {
+    font-size: 1.3rem; /* 첫 번째 코드와 동일하게 설정 */
+  }
+
+  .score1 {
+    font-size: 0.9rem; /* 첫 번째 코드와 동일하게 설정 */
+  }
+
+  .box1 {
+    width: 200px; /* 첫 번째 코드와 동일하게 설정 */
+    font-size: 1rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 30px;
+  }
+
+  .rent-room1, .room1{
+    font-size: 0.9rem;
+  }
+  .rent-price1, .room-price1{
+     font-size: 1.1rem;
+  }
+
+  .reservation1 {
+    width: 30px; /* 첫 번째 코드와 동일하게 설정 */
+    font-size: 0.8rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 20px;
+  }
+
+  .heart {
+    font-size: 1.5rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 90px;
+    left: 52px;
+  }
 }
 
-.heart {
-  position: relative !important;
-  bottom: 23.8vh;
-  left: 49.5vw;
-  margin-left: 45px;
-  font-size: 27px !important;
-}
+@media (min-width: 801px) {
+  .box-wrapper{
+    margin-bottom: 50px;
+  }
 
+  .hotel-container {
+     height: 70vh;
+  }
+
+  .button-container {
+    gap: 13px;
+    left: 23%;
+  }
+
+  .img1 {
+    max-width: 400px; /* 첫 번째 코드와 동일하게 설정 */
+    height: 240px; /* 첫 번째 코드와 동일하게 설정 */
+  }
+
+  .hotel1 {
+    font-size: 1.5rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 18px;
+  }
+
+  .site1 {
+    font-size: 1.1rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 20px;
+  }
+
+  .gpa1 {
+    flex-direction: row;
+    margin-top: 20px;
+    bottom: 43px;
+    right: 8px;
+  }
+
+  .star1 {
+    font-size: 1.4rem; /* 첫 번째 코드와 동일하게 설정 */
+  }
+
+  .score1 {
+    font-size: 1rem; /* 첫 번째 코드와 동일하게 설정 */
+  }
+
+  .box1 {
+    width: 250px; /* 첫 번째 코드와 동일하게 설정 */
+    font-size: 1rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 55px;
+  }
+
+  .rent-room1, .room1{
+    font-size: 1rem;
+  }
+  .rent-price1, .room-price1{
+     font-size: 1.2rem;
+  }
+
+  .reservation1 {
+    width: 70px; /* 첫 번째 코드와 동일하게 설정 */
+    font-size: 0.9rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 45px;
+  }
+
+  .heart {
+    font-size: 1.7rem; /* 첫 번째 코드와 동일하게 설정 */
+    bottom: 118px;
+    left: 60px;
+  }
+}
 </style>
+
+
+
