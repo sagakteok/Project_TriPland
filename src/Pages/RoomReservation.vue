@@ -47,58 +47,63 @@
       <!-- 화면 너비에 따라 다른 레이아웃을 렌더링 -->
       <div v-if="screenWidth <= 500">
         <!-- 모바일 레이아웃 -->
-        <div v-for="(hotel, index) in hotels" :key="index" class="hotel-container">
-          <img :src="hotel.image" alt="Room Image" class="img1" />
-          <span class="hotel1">{{ hotel.name }}</span>
-          <div class="site1">{{ hotel.address }}</div>
-          <div class="gpa1">
-            <v-icon class="star1">mdi-star</v-icon>
-            <span class="score1">{{ hotel.rating }}</span>
+        <div class="main2">
+          <div v-for="(hotel, index) in hotels" :key="index" class="hotel-container">
+            <img :src="hotel.image" alt="Room Image" class="img1" />
+            <span class="hotel1">{{ hotel.name }}</span>
+            <div class="site1">{{ hotel.address }}</div>
+            <div class="gpa1">
+              <v-icon class="star1">mdi-star</v-icon>
+              <span class="score1">{{ hotel.rating }}</span>
+            </div>
+            <v-icon 
+              :icon="hotel.liked ? 'mdi-heart' : 'mdi-heart-outline'" 
+              :color="hotel.liked ? 'red' : ''" 
+              @click="toggleLike(index)"
+              class="heart"
+            ></v-icon>
+            <div class="box1">
+              <span class="rent-room1">{{ hotel.rentDuration }}</span>
+              <span class="rent-price1">{{ hotel.rentPrice }}</span>
+              <span class="room1">{{ hotel.roomDuration }}</span>
+              <span class="room-price1">{{ hotel.roomPrice }}</span>
+            </div>
+            <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
           </div>
-          <v-icon 
-            :icon="hotel.liked ? 'mdi-heart' : 'mdi-heart-outline'" 
-            :color="hotel.liked ? 'red' : ''" 
-            @click="toggleLike(index)"
-            class="heart"
-          ></v-icon>
-          <div class="box1">
-            <span class="rent-room1">{{ hotel.rentDuration }}</span>
-            <span class="rent-price1">{{ hotel.rentPrice }}</span>
-            <span class="room1">{{ hotel.roomDuration }}</span>
-            <span class="room-price1">{{ hotel.roomPrice }}</span>
-          </div>
-          <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
         </div>
       </div>
 
       <div v-else-if="screenWidth <= 800">
         <!-- 태블릿 레이아웃 -->
-        <div v-for="(hotel, index) in hotels" :key="index" class="hotel-container">
-          <img :src="hotel.image" alt="Room Image" class="img1" />
-          <span class="hotel1">{{ hotel.name }}</span>
-          <div class="site1">{{ hotel.address }}</div>
-          <div class="gpa1">
-            <v-icon class="star1">mdi-star</v-icon>
-            <span class="score1">{{ hotel.rating }}</span>
+        <div class="main2">
+          <div v-for="(hotel, index) in hotels" :key="index" class="hotel-container">
+            <img :src="hotel.image" alt="Room Image" class="img1" />
+            <span class="hotel1">{{ hotel.name }}</span>
+            <div class="site1">{{ hotel.address }}</div>
+            <div class="gpa1">
+              <v-icon class="star1">mdi-star</v-icon>
+              <span class="score1">{{ hotel.rating }}</span>
+            </div>
+            <v-icon 
+              :icon="hotel.liked ? 'mdi-heart' : 'mdi-heart-outline'" 
+              :color="hotel.liked ? 'red' : ''" 
+              @click="toggleLike(index)"
+              class="heart"
+            ></v-icon>
+            <div class="box1">
+              <span class="rent-room1">{{ hotel.rentDuration }}</span>
+              <span class="rent-price1">{{ hotel.rentPrice }}</span>
+              <span class="room1">{{ hotel.roomDuration }}</span>
+              <span class="room-price1">{{ hotel.roomPrice }}</span>
+            </div>
+            <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
           </div>
-          <v-icon 
-            :icon="hotel.liked ? 'mdi-heart' : 'mdi-heart-outline'" 
-            :color="hotel.liked ? 'red' : ''" 
-            @click="toggleLike(index)"
-            class="heart"
-          ></v-icon>
-          <div class="box1">
-            <span class="rent-room1">{{ hotel.rentDuration }}</span>
-            <span class="rent-price1">{{ hotel.rentPrice }}</span>
-            <span class="room1">{{ hotel.roomDuration }}</span>
-            <span class="room-price1">{{ hotel.roomPrice }}</span>
-          </div>
-          <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
         </div>
       </div>
 
       <div v-else>
         <!-- 데스크탑 레이아웃 -->
+        <div class="main2">
           <div v-for="(hotel, index) in hotels" :key="index" class="hotel-container">
             <div class="line1"></div>
             <img :src="hotel.image" alt="Room Image" class="img1" />
@@ -122,6 +127,7 @@
             </div>
             <v-btn class="reservation1" @click="showReservationDialog(hotel)">예약</v-btn>
           </div>
+        </div>
       </div>
 
       <!-- 인원 수 설정 다이얼로그 -->
@@ -348,6 +354,18 @@ export default {
 
 <style scoped>
 /* 기본 스타일 */
+.main2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  max-width: 700px;
+  padding: 20px;
+  border: 1px solid #F6F6F6;
+  background-color: #F6F6F6;
+  margin: 0 auto;
+}
+
 .box-wrapper {
   padding: 20px;
   padding-top: 40px;
@@ -357,6 +375,7 @@ export default {
   max-width: 700px; /* 첫 번째 코드와 동일하게 설정 */
   width: 80vw; /* 첫 번째 코드와 동일하게 설정 */
   margin: 0 auto;
+  margin-bottom: 0px !important;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
