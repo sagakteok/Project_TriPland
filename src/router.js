@@ -3,6 +3,7 @@ import MainHome from "./components/MainHome/MainHome.vue";
 import TravelPick from "./Pages/TravelPick.vue";
 import RoomReservation from "./Pages/RoomReservation.vue";
 import Confirm from "./Pages/Confirm.vue";
+import Schedule from "./Pages/Schedule.vue"
 
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
     {
         path: "/confirm",
         component: Confirm,
+    },
+    {
+        path: "/schedule",
+        component: Schedule,
     }
 ];
 

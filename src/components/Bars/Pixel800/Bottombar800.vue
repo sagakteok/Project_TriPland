@@ -1,7 +1,7 @@
 <template>
   <v-bottom-navigation class="BottombarStyle800" :elevation="0">
     <v-btn stacked prepend-icon="mdi-calendar-edit" rounded="lg">
-      <text class="BottombarText800">여행계획</text>
+      <text class="BottombarText800" @click="gotoSchedule()">여행계획</text>
     </v-btn>
     <text class="SmallTriPlandLogoStyle800" @click="gotomain()">
       <v-img :src="SmallTriPlandLogo"/>
@@ -24,6 +24,9 @@ export default {
   methods: {
     gotomain() {
       router.push('/')
+    },
+    gotoSchedule(){
+      router.push('/schedule');
     }
   }
 };
