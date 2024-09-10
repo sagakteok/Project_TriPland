@@ -1,9 +1,9 @@
 <template>
   <v-bottom-navigation class="BottombarStyle" :elevation="0">
-    <v-btn stacked prepend-icon="mdi-calendar-edit" rounded="lg">
-      <text class="BottombarText" @click="gotoSchedule()">여행계획</text>
+    <v-btn stacked prepend-icon="mdi-calendar-edit" rounded="lg" @click="gotoSchedule">
+      <text class="BottombarText">여행계획</text>
     </v-btn>
-    <text class="SmallTriPlandLogoStyle" @click="gotomain()">
+    <text class="SmallTriPlandLogoStyle" @click="gotomain">
       <v-img :src="SmallTriPlandLogo"/>
     </text>
     <v-btn stacked prepend-icon="mdi-heart-outline" rounded="lg">
@@ -14,19 +14,30 @@
 
 <script>
 import router from "../../../router.js";
+
 export default {
   name: 'Bottombar1600',
-  data(){
+  data() {
     return {
-       SmallTriPlandLogo: new URL('../../../assets/SmallTriPlandLogo.png', import.meta.url).href
-    }
+      SmallTriPlandLogo: new URL('../../../assets/SmallTriPlandLogo.png', import.meta.url).href
+    };
   },
   methods: {
     gotomain() {
-      router.push('/')
+      router.push('/');
     },
-    gotoSchedule(){
-      router.push('/schedule');
+    gotoSchedule() {
+      const isVerified = this.checkVerificationStatus();
+
+      if (isVerified) {
+        router.push('/schedule');
+      } else {
+        // 본인 인증을 위해 리다이렉트
+        alert("여행계획 페이지를 보기 위해 본인 인증이 필요합니다.");
+      }
+    },
+    checkVerificationStatus() {
+      return localStorage.getItem('isVerified') === 'true';
     }
   }
 };
