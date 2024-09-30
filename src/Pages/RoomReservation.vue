@@ -513,7 +513,7 @@ th {
   }
 
   .hotel-container {
-     height: 40vh;
+     height: 50vh;
   }
 
   .button-container {
@@ -584,7 +584,7 @@ th {
   }
 
   .hotel-container {
-     height: 60vh;
+     height: 65vh;
   }
 
   .button-container {
@@ -654,7 +654,7 @@ th {
   }
 
   .hotel-container {
-     height: 70vh;
+     height: 75vh;
   }
 
   .button-container {
